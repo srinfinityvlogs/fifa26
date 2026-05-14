@@ -4,7 +4,25 @@ const searchInput = document.getElementById("searchInput");
 
 let allMatches = [];
 
-function convertToIST(utcTime) {
+/* COUNTRY FLAGS */
+
+const flags = {
+  Brazil: "br",
+  Germany: "de",
+  Argentina: "ar",
+  France: "fr",
+  Mexico: "mx",
+  Japan: "jp",
+  Spain: "es",
+  Portugal: "pt",
+  England: "gb-eng",
+  USA: "us"
+};
+
+/* IST FORMAT */
+
+function formatIST(utcTime) {
+
   return new Date(utcTime).toLocaleString("en-IN", {
     timeZone: "Asia/Kolkata",
     weekday: "short",
@@ -14,78 +32,156 @@ function convertToIST(utcTime) {
     minute: "2-digit",
     hour12: true
   });
+
 }
 
-function createMatchCard(match) {
+/* DATE FORMAT */
 
-  const istDate = convertToIST(match.timeUTC);
+function prettyDate(dateStr) {
+
+  return new Date(dateStr).toLocaleDateString("en-IN", {
+    weekday: "long",
+    day: "numeric",
+    month: "long"
+  });
+
+}
+
+/* FLAG */
+
+function getFlag(team) {
+
+  const code = flags[team];
+
+  if (!code) return "";
 
   return `
-    <div class="match-card bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
+    <img
+      src="https://flagcdn.com/w80/${code}.png"
+      alt="${team}"
+    />
+  `;
 
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+}
 
-        <div>
-          <div class="text-2xl font-bold">
+/* CARD */
+
+function createMatchCard(match, today = false) {
+
+  return `
+
+    <div class="match-card ${today ? "today-card" : ""}">
+
+      <div class="teams">
+
+        <div class="team">
+          ${getFlag(match.team1)}
+          <div class="team-name">
             ${match.team1}
-            <span class="text-zinc-500 mx-2">vs</span>
-            ${match.team2}
-          </div>
-
-          <div class="mt-2 text-zinc-400">
-            🏟 ${match.stadium}
           </div>
         </div>
 
-        <div class="md:text-right">
-          <div class="text-lg font-semibold text-blue-400">
-            ${istDate}
-          </div>
+        <div class="vs">VS</div>
 
-          <div class="text-zinc-500 mt-1">
-            Group ${match.group}
+        <div class="team justify-end text-right">
+          <div class="team-name">
+            ${match.team2}
           </div>
+          ${getFlag(match.team2)}
         </div>
 
       </div>
 
+      <div class="match-info">
+        <div>🕒 ${formatIST(match.timeUTC)}</div>
+        <div>🏟 ${match.stadium}</div>
+        <div>🏆 Group ${match.group}</div>
+      </div>
+
     </div>
+
   `;
+
 }
 
-function renderMatches(matches) {
+/* GROUP BY DATE */
+
+function groupByDate(matches) {
+
+  const grouped = {};
+
+  matches.forEach(match => {
+
+    if (!grouped[match.date]) {
+      grouped[match.date] = [];
+    }
+
+    grouped[match.date].push(match);
+
+  });
+
+  return grouped;
+
+}
+
+/* FULL SCHEDULE */
+
+function renderSchedule(matches) {
 
   matchesContainer.innerHTML = "";
 
-  matches.forEach(match => {
-    matchesContainer.innerHTML += createMatchCard(match);
-  });
+  const grouped = groupByDate(matches);
+
+  Object.keys(grouped)
+    .sort()
+    .forEach(date => {
+
+      matchesContainer.innerHTML += `
+        <div class="date-header">
+          ${prettyDate(date)}
+        </div>
+      `;
+
+      grouped[date].forEach(match => {
+        matchesContainer.innerHTML += createMatchCard(match);
+      });
+
+    });
 
 }
 
+/* TODAY */
+
 function renderToday(matches) {
 
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date()
+    .toISOString()
+    .split("T")[0];
 
-  const todays = matches.filter(match => {
-    return match.date === today;
-  });
+  const todays = matches.filter(
+    match => match.date === today
+  );
 
   if (!todays.length) {
+
     todayMatches.innerHTML = `
       <div class="text-zinc-500">
         No matches today
       </div>
     `;
+
     return;
   }
 
   todayMatches.innerHTML = "";
 
   todays.forEach(match => {
-    todayMatches.innerHTML += createMatchCard(match);
+    todayMatches.innerHTML += createMatchCard(match, true);
   });
+
 }
+
+/* SEARCH */
 
 function filterMatches() {
 
@@ -96,10 +192,11 @@ function filterMatches() {
     match.team2.toLowerCase().includes(query)
   );
 
-  renderMatches(filtered);
+  renderSchedule(filtered);
+
 }
 
-searchInput.addEventListener("input", filterMatches);
+/* INIT */
 
 async function init() {
 
@@ -107,9 +204,18 @@ async function init() {
 
   allMatches = await response.json();
 
+  allMatches.sort(
+    (a, b) =>
+      new Date(a.timeUTC) -
+      new Date(b.timeUTC)
+  );
+
   renderToday(allMatches);
 
-  renderMatches(allMatches);
+  renderSchedule(allMatches);
+
 }
+
+searchInput.addEventListener("input", filterMatches);
 
 init();
