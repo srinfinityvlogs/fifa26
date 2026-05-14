@@ -1,0 +1,11 @@
+body {
+  font-family: Inter, sans-serif;
+}
+
+.match-card {
+  transition: 0.2s ease;
+}
+
+.match-card:hover {
+  transform: translateY(-2px);
+}
