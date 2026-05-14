@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2026-06-11",
+    "timeUTC": "2026-06-11T18:00:00Z",
+    "team1": "Mexico",
+    "team2": "Japan",
+    "stadium": "Estadio Azteca",
+    "group": "A"
+  },
+  {
+    "date": "2026-06-12",
+    "timeUTC": "2026-06-12T01:00:00Z",
+    "team1": "Brazil",
+    "team2": "Germany",
+    "stadium": "MetLife Stadium",
+    "group": "B"
+  },
+  {
+    "date": "2026-06-12",
+    "timeUTC": "2026-06-12T18:00:00Z",
+    "team1": "Argentina",
+    "team2": "France",
+    "stadium": "SoFi Stadium",
+    "group": "C"
+  }
+]
