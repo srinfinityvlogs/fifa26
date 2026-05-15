@@ -2,30 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>FIFA World Cup 2026 Schedule IST</title>
+  <title>FIFA 2026 Schedule IST</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link rel="stylesheet" href="styles.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-zinc-950 text-white min-h-screen">
+<body class="bg-black text-white">
+
+  <!-- BACKGROUND -->
+  <div class="bg-gradient"></div>
 
   <!-- HEADER -->
-  <header class="sticky top-0 z-50 bg-black/70 backdrop-blur border-b border-zinc-800">
+  <header class="sticky top-0 z-50 backdrop-blur-xl border-b border-white/10 bg-black/40">
+
     <div class="max-w-6xl mx-auto px-4 py-4">
 
-      <div class="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
         <div>
-          <h1 class="text-3xl font-bold">
-            ⚽ FIFA World Cup 2026
+          <h1 class="text-3xl md:text-5xl font-extrabold">
+            FIFA 2026
           </h1>
 
-          <p class="text-zinc-400 text-sm mt-1">
-            All Match Times in IST
+          <p class="text-zinc-400 mt-1">
+            All Match Times in IST 🇮🇳
           </p>
         </div>
 
@@ -33,38 +40,58 @@
         <input
           id="searchInput"
           type="text"
-          placeholder="Search teams..."
-          class="bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-2 outline-none focus:border-blue-500"
+          placeholder="Search team..."
+          class="search-box"
         />
 
       </div>
+
     </div>
+
   </header>
 
-  <!-- CONTENT -->
-  <main class="max-w-6xl mx-auto px-4 py-8">
+  <!-- MAIN -->
+  <main class="max-w-5xl mx-auto px-4 py-10">
 
-    <!-- TODAY -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-bold mb-4">
-        Today's Matches
-      </h2>
+    <!-- TABS -->
+    <section class="mb-14">
 
-      <div id="todayMatches" class="grid gap-4"></div>
+      <div class="flex gap-3 mb-6">
+
+        <button
+          class="tab-button active-tab"
+          data-tab="today"
+        >
+          Today
+        </button>
+
+        <button
+          class="tab-button"
+          data-tab="tomorrow"
+        >
+          Tomorrow
+        </button>
+
+      </div>
+
+      <div id="tabMatches"></div>
+
     </section>
 
-    <!-- ALL MATCHES -->
+    <!-- SCHEDULE -->
     <section>
-      <h2 class="text-2xl font-bold mb-6">
-        Full Schedule
-      </h2>
 
-      <div id="matchesContainer" class="grid gap-4"></div>
+      <div class="section-title">
+        📅 Full Schedule
+      </div>
+
+      <div id="matchesContainer"></div>
+
     </section>
 
   </main>
 
-  <footer class="text-center py-10 text-zinc-500 text-sm">
+  <footer class="py-10 text-center text-zinc-500 text-sm">
     Built for football fans ⚽
   </footer>
 
