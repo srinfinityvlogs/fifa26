@@ -1,26 +1,54 @@
 [
   {
+    "id": 1,
+    "stage": "Group Stage",
+    "group": "A",
+
     "date": "2026-06-11",
+
     "timeUTC": "2026-06-11T18:00:00Z",
+
     "team1": "Mexico",
     "team2": "Japan",
+
     "stadium": "Estadio Azteca",
-    "group": "A"
+
+    "city": "Mexico City",
+
+    "matchday": 1
   },
+
   {
-    "date": "2026-06-12",
-    "timeUTC": "2026-06-12T01:00:00Z",
-    "team1": "Brazil",
-    "team2": "Germany",
-    "stadium": "MetLife Stadium",
-    "group": "B"
-  },
-  {
-    "date": "2026-06-12",
-    "timeUTC": "2026-06-12T18:00:00Z",
-    "team1": "Argentina",
-    "team2": "France",
+    "id": 49,
+
+    "stage": "Round of 16",
+
+    "date": "2026-07-03",
+
+    "timeUTC": "2026-07-03T20:00:00Z",
+
+    "team1": "Winner Group A",
+    "team2": "Runner-up Group B",
+
     "stadium": "SoFi Stadium",
-    "group": "C"
+
+    "city": "Los Angeles"
+  },
+
+  {
+    "id": 63,
+
+    "stage": "Final",
+
+    "date": "2026-07-19",
+
+    "timeUTC": "2026-07-19T19:00:00Z",
+
+    "team1": "Winner SF1",
+    "team2": "Winner SF2",
+
+    "stadium": "MetLife Stadium",
+
+    "city": "New York"
   }
 ]
