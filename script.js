@@ -1,81 +1,149 @@
-const matchesContainer = document.getElementById("matchesContainer");
-const tabMatches = document.getElementById("tabMatches");
-const searchInput = document.getElementById("searchInput");
-const timezoneSelect = document.getElementById("timezoneSelect");
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const matchesContainer =
+  document.getElementById("matchesContainer");
+
+const tabMatches =
+  document.getElementById("tabMatches");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const timezoneSelect =
+  document.getElementById("timezoneSelect");
+
+/* =========================================
+   STATE
+========================================= */
 
 let allMatches = [];
 
-let selectedTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+let selectedTimezone =
+  Intl.DateTimeFormat()
+    .resolvedOptions()
+    .timeZone;
 
-/* COUNTRY FLAGS */
+/* =========================================
+   FLAGS
+========================================= */
 
 const flags = {
-  Brazil: "br",
-  Germany: "de",
+
   Argentina: "ar",
-  France: "fr",
-  Mexico: "mx",
-  Japan: "jp",
-  Spain: "es",
-  Portugal: "pt",
+  Australia: "au",
+  Austria: "at",
+  Belgium: "be",
+  BosniaandHerzegovina: "ba",
+  Brazil: "br",
+  Canada: "ca",
+  Colombia: "co",
+  Croatia: "hr",
+  Curacao: "cw",
+  Czechia: "cz",
+  Ecuador: "ec",
+  Egypt: "eg",
   England: "gb-eng",
-  USA: "us"
+  France: "fr",
+  Germany: "de",
+  Ghana: "gh",
+  Haiti: "ht",
+  Iraq: "iq",
+  IRIran: "ir",
+  Japan: "jp",
+  Jordan: "jo",
+  KoreaRepublic: "kr",
+  Mexico: "mx",
+  Morocco: "ma",
+  Netherlands: "nl",
+  NewZealand: "nz",
+  Norway: "no",
+  Panama: "pa",
+  Paraguay: "py",
+  Portugal: "pt",
+  Qatar: "qa",
+  SaudiArabia: "sa",
+  Scotland: "gb-sct",
+  Senegal: "sn",
+  SouthAfrica: "za",
+  Spain: "es",
+  Sweden: "se",
+  Switzerland: "ch",
+  Tunisia: "tn",
+  Turkiye: "tr",
+  Uruguay: "uy",
+  USA: "us",
+  Uzbekistan: "uz"
+
 };
 
-/* TIMEZONE LIST */
+/* =========================================
+   TIMEZONES
+========================================= */
 
 const timezones = [
-  "Asia/Kolkata",
-  "Europe/London",
-  "America/New_York",
-  "America/Chicago",
-  "America/Los_Angeles",
-  "Europe/Paris",
-  "Asia/Tokyo",
-  "Australia/Sydney"
+
+  {
+    label: "🇮🇳 IST",
+    value: "Asia/Kolkata"
+  },
+
+  {
+    label: "🇬🇧 GMT",
+    value: "Europe/London"
+  },
+
+  {
+    label: "🇺🇸 ET",
+    value: "America/New_York"
+  },
+
+  {
+    label: "🇺🇸 CT",
+    value: "America/Chicago"
+  },
+
+  {
+    label: "🇺🇸 PT",
+    value: "America/Los_Angeles"
+  },
+
+  {
+    label: "🇫🇷 CET",
+    value: "Europe/Paris"
+  },
+
+  {
+    label: "🇯🇵 JST",
+    value: "Asia/Tokyo"
+  },
+
+  {
+    label: "🇦🇺 AEST",
+    value: "Australia/Sydney"
+  }
+
 ];
 
-/* FORMAT TIME */
+/* =========================================
+   HELPERS
+========================================= */
 
-function formatTime(utcTime) {
+function normalizeTeam(team) {
 
-  return new Date(utcTime).toLocaleString([], {
-
-    timeZone: selectedTimezone,
-
-    weekday: "short",
-
-    day: "numeric",
-
-    month: "short",
-
-    hour: "numeric",
-
-    minute: "2-digit",
-
-    hour12: true
-
-  });
+  return team
+    .replace(/\s/g, "")
+    .replace(/'/g, "")
+    .replace(/\./g, "");
 
 }
-
-/* DATE FORMAT */
-
-function prettyDate(dateStr) {
-
-  return new Date(dateStr).toLocaleDateString("en-IN", {
-    weekday: "long",
-    day: "numeric",
-    month: "long"
-  });
-
-}
-
-/* FLAG */
 
 function getFlag(team) {
 
-  const code = flags[team];
+  const key = normalizeTeam(team);
+
+  const code = flags[key];
 
   if (!code) return "";
 
@@ -88,38 +156,133 @@ function getFlag(team) {
 
 }
 
-/* CARD */
+function formatMatchTime(utcTime) {
 
-function createMatchCard(match, today = false) {
+  return new Date(utcTime)
+    .toLocaleString("en-IN", {
+
+      timeZone: selectedTimezone,
+
+      weekday: "short",
+
+      day: "numeric",
+
+      month: "short",
+
+      hour: "numeric",
+
+      minute: "2-digit",
+
+      hour12: true
+
+    });
+
+}
+
+function getLocalDateString(utcTime) {
+
+  const formatter =
+    new Intl.DateTimeFormat("en-CA", {
+
+      timeZone: selectedTimezone,
+
+      year: "numeric",
+
+      month: "2-digit",
+
+      day: "2-digit"
+
+    });
+
+  return formatter
+    .format(new Date(utcTime));
+
+}
+
+function formatSectionDate(dateStr) {
+
+  return new Date(dateStr)
+    .toLocaleDateString("en-IN", {
+
+      weekday: "long",
+
+      day: "numeric",
+
+      month: "long"
+
+    });
+
+}
+
+/* =========================================
+   MATCH CARD
+========================================= */
+
+function createMatchCard(match) {
 
   return `
 
-    <div class="match-card ${today ? "today-card" : ""}">
+    <div class="match-card">
+
+      <!-- STAGE -->
+
+      <div class="stage-badge">
+
+        ${match.stage}
+
+        ${match.group
+          ? ` • Group ${match.group}`
+          : ""
+        }
+
+      </div>
+
+      <!-- TEAMS -->
 
       <div class="teams">
 
         <div class="team">
+
           ${getFlag(match.team1)}
+
           <div class="team-name">
             ${match.team1}
           </div>
+
         </div>
 
-        <div class="vs">VS</div>
+        <div class="vs">
+          VS
+        </div>
 
         <div class="team justify-end text-right">
+
           <div class="team-name">
             ${match.team2}
           </div>
+
           ${getFlag(match.team2)}
+
         </div>
 
       </div>
 
+      <!-- INFO -->
+
       <div class="match-info">
-        <div>🕒 ${formatTime(match.timeUTC)}</div>
-        <div>🏟 ${match.stadium}</div>
-        <div>🏆 ${match.stage}</div>
+
+        <div>
+          🕒 ${formatMatchTime(match.timeUTC)}
+        </div>
+
+        <div>
+          🏟 ${match.stadium}
+        </div>
+
+        <div>
+          📍 ${match.city}
+        </div>
+
       </div>
 
     </div>
@@ -128,19 +291,26 @@ function createMatchCard(match, today = false) {
 
 }
 
-/* GROUP BY DATE */
+/* =========================================
+   GROUP MATCHES BY LOCAL DATE
+========================================= */
 
-function groupByDate(matches) {
+function groupMatchesByDate(matches) {
 
   const grouped = {};
 
   matches.forEach(match => {
 
-    if (!grouped[match.date]) {
-      grouped[match.date] = [];
+    const localDate =
+      getLocalDateString(match.timeUTC);
+
+    if (!grouped[localDate]) {
+
+      grouped[localDate] = [];
+
     }
 
-    grouped[match.date].push(match);
+    grouped[localDate].push(match);
 
   });
 
@@ -148,143 +318,310 @@ function groupByDate(matches) {
 
 }
 
-/* FULL SCHEDULE */
+/* =========================================
+   FULL SCHEDULE
+========================================= */
 
 function renderSchedule(matches) {
 
   matchesContainer.innerHTML = "";
 
-  const grouped = groupByDate(matches);
+  const grouped =
+    groupMatchesByDate(matches);
 
   Object.keys(grouped)
     .sort()
     .forEach(date => {
 
       matchesContainer.innerHTML += `
+
         <div class="date-header">
-          ${prettyDate(date)}
+          ${formatSectionDate(date)}
         </div>
+
       `;
 
-      grouped[date].forEach(match => {
-        matchesContainer.innerHTML += createMatchCard(match);
-      });
+      grouped[date]
+        .forEach(match => {
+
+          matchesContainer.innerHTML +=
+            createMatchCard(match);
+
+        });
 
     });
 
 }
 
-/* RENDER TABS */
+/* =========================================
+   TODAY / TOMORROW
+========================================= */
 
-function renderTabs(matches) {
+function renderTab(tabType) {
 
-  const today = new Date().toISOString().split("T")[0];
-  const tomorrow = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split("T")[0];
+  const now = new Date();
 
-  const todayMatches = matches.filter(match => match.date === today);
-  const tomorrowMatches = matches.filter(match => match.date === tomorrow);
+  const target =
+    new Date(now);
 
-  let html = "";
+  if (tabType === "tomorrow") {
 
-  if (todayMatches.length === 0 && tomorrowMatches.length === 0) {
-    html = `<div class="text-zinc-500">No matches today or tomorrow</div>`;
-  } else {
-    if (todayMatches.length > 0) {
-      html += `<div class="mb-6">
-        <h3 class="text-lg font-semibold mb-3">Today</h3>`;
-      todayMatches.forEach(match => {
-        html += createMatchCard(match, true);
-      });
-      html += `</div>`;
-    }
+    target.setDate(
+      target.getDate() + 1
+    );
 
-    if (tomorrowMatches.length > 0) {
-      html += `<div>
-        <h3 class="text-lg font-semibold mb-3">Tomorrow</h3>`;
-      tomorrowMatches.forEach(match => {
-        html += createMatchCard(match, true);
-      });
-      html += `</div>`;
-    }
   }
 
-  tabMatches.innerHTML = html;
+  const targetDate =
+    getLocalDateString(target);
+
+  const filtered =
+    allMatches.filter(match => {
+
+      return (
+        getLocalDateString(
+          match.timeUTC
+        ) === targetDate
+      );
+
+    });
+
+  if (!filtered.length) {
+
+    tabMatches.innerHTML = `
+
+      <div class="empty-state">
+        No matches
+      </div>
+
+    `;
+
+    return;
+  }
+
+  tabMatches.innerHTML = "";
+
+  filtered.forEach(match => {
+
+    tabMatches.innerHTML +=
+      createMatchCard(match);
+
+  });
 
 }
 
-/* RENDER ALL */
+/* =========================================
+   TABS
+========================================= */
 
-function renderAll() {
-  renderSchedule(allMatches);
-  renderTabs(allMatches);
+function setupTabs() {
+
+  const buttons =
+    document.querySelectorAll(
+      ".tab-button"
+    );
+
+  buttons.forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        buttons.forEach(btn => {
+
+          btn.classList.remove(
+            "active-tab"
+          );
+
+        });
+
+        button.classList.add(
+          "active-tab"
+        );
+
+        renderTab(
+          button.dataset.tab
+        );
+
+      }
+    );
+
+  });
+
 }
 
-/* SETUP TIMEZONES */
+/* =========================================
+   SEARCH
+========================================= */
+
+function setupSearch() {
+
+  searchInput.addEventListener(
+    "input",
+    e => {
+
+      const query =
+        e.target.value
+          .toLowerCase()
+          .trim();
+
+      if (!query) {
+
+        renderSchedule(allMatches);
+
+        return;
+
+      }
+
+      const filtered =
+        allMatches.filter(match => {
+
+          return (
+            match.team1
+              .toLowerCase()
+              .includes(query)
+
+            ||
+
+            match.team2
+              .toLowerCase()
+              .includes(query)
+          );
+
+        });
+
+      renderSchedule(filtered);
+
+    }
+  );
+
+}
+
+/* =========================================
+   TIMEZONE DROPDOWN
+========================================= */
 
 function setupTimezones() {
 
+  timezoneSelect.innerHTML = "";
+
   timezones.forEach(tz => {
 
-    const option = document.createElement("option");
+    const option =
+      document.createElement(
+        "option"
+      );
 
-    option.value = tz;
+    option.value = tz.value;
 
-    option.textContent = tz;
+    option.textContent =
+      tz.label;
 
-    if (tz === selectedTimezone) {
+    if (
+      tz.value === selectedTimezone
+    ) {
+
       option.selected = true;
+
     }
 
-    timezoneSelect.appendChild(option);
+    timezoneSelect.appendChild(
+      option
+    );
 
   });
 
-  timezoneSelect.addEventListener("change", e => {
+  timezoneSelect.addEventListener(
+    "change",
+    e => {
 
-    selectedTimezone = e.target.value;
+      selectedTimezone =
+        e.target.value;
 
-    renderAll();
+      rerenderEverything();
 
-  });
-
-}
-
-/* SEARCH */
-
-function filterMatches() {
-
-  const query = searchInput.value.toLowerCase();
-
-  const filtered = allMatches.filter(match =>
-    match.team1.toLowerCase().includes(query) ||
-    match.team2.toLowerCase().includes(query)
+    }
   );
 
-  renderSchedule(filtered);
+}
+
+/* =========================================
+   RERENDER
+========================================= */
+
+function rerenderEverything() {
+
+  renderSchedule(allMatches);
+
+  const activeTab =
+    document.querySelector(
+      ".active-tab"
+    );
+
+  renderTab(
+    activeTab.dataset.tab
+  );
 
 }
 
-/* EVENT LISTENERS */
-
-searchInput.addEventListener("input", filterMatches);
-
-/* INIT */
+/* =========================================
+   INIT
+========================================= */
 
 async function init() {
 
-  const response = await fetch("matches.json");
+  try {
 
-  allMatches = await response.json();
+    const response =
+      await fetch("matches.json");
 
-  allMatches.sort(
-    (a, b) =>
-      new Date(a.timeUTC) -
-      new Date(b.timeUTC)
-  );
+    allMatches =
+      await response.json();
 
-  setupTimezones();
-  renderAll();
+    allMatches.sort(
+      (a, b) => {
+
+        return (
+          new Date(a.timeUTC)
+          -
+          new Date(b.timeUTC)
+        );
+
+      }
+    );
+
+    setupTimezones();
+
+    setupTabs();
+
+    setupSearch();
+
+    renderSchedule(allMatches);
+
+    renderTab("today");
+
+  }
+
+  catch (error) {
+
+    console.error(error);
+
+    matchesContainer.innerHTML = `
+
+      <div class="empty-state">
+
+        Failed to load matches.json
+
+      </div>
+
+    `;
+
+  }
 
 }
+
+/* =========================================
+   START
+========================================= */
 
 init();
