@@ -109,7 +109,7 @@
     "group": "E",
     "matchday": 1,
     "timeUTC": "2026-06-14T16:00:00Z",
-    "team1": "Côte d'Ivoire",
+    "team1": "Côte d"Ivoire",
     "team2": "Ecuador",
     "stadium": "Philadelphia Stadium",
     "city": "Philadelphia",
@@ -154,6 +154,7 @@
     "city": "Monterrey",
     "hostCountry": "Mexico"
   }
+]
 {
   "id": 13,
   "stage": "Group Stage",
@@ -412,7 +413,7 @@
   "group": "E",
   "matchday": 2,
   "timeUTC": "2026-06-20T19:00:00Z",
-  "team1": "Côte d'Ivoire",
+  "team1": "Côte d"Ivoire",
   "team2": "Curaçao",
   "stadium": "Philadelphia Stadium",
   "city": "Philadelphia",
