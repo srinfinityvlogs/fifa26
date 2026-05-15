@@ -1,8 +1,11 @@
 const matchesContainer = document.getElementById("matchesContainer");
-const todayMatches = document.getElementById("todayMatches");
+const tabMatches = document.getElementById("tabMatches");
 const searchInput = document.getElementById("searchInput");
+const timezoneSelect = document.getElementById("timezoneSelect");
 
 let allMatches = [];
+
+let selectedTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 /* COUNTRY FLAGS */
 
@@ -19,18 +22,45 @@ const flags = {
   USA: "us"
 };
 
-/* IST FORMAT */
+/* TIMEZONE LIST */
 
-function formatIST(utcTime) {
+const timezones = [
+  "UTC",
+  "Asia/Kolkata",
+  "Asia/Dubai",
+  "Asia/Bangkok",
+  "Asia/Singapore",
+  "Europe/London",
+  "Europe/Paris",
+  "Europe/Berlin",
+  "America/New_York",
+  "America/Chicago",
+  "America/Denver",
+  "America/Los_Angeles",
+  "Australia/Sydney",
+  "Australia/Melbourne"
+];
 
-  return new Date(utcTime).toLocaleString("en-IN", {
-    timeZone: "Asia/Kolkata",
+/* FORMAT TIME */
+
+function formatTime(utcTime) {
+
+  return new Date(utcTime).toLocaleString([], {
+
+    timeZone: selectedTimezone,
+
     weekday: "short",
+
     day: "numeric",
+
     month: "short",
+
     hour: "numeric",
+
     minute: "2-digit",
+
     hour12: true
+
   });
 
 }
@@ -93,9 +123,9 @@ function createMatchCard(match, today = false) {
       </div>
 
       <div class="match-info">
-        <div>🕒 ${formatIST(match.timeUTC)}</div>
+        <div>🕒 ${formatTime(match.timeUTC)}</div>
         <div>🏟 ${match.stadium}</div>
-        <div>🏆 Group ${match.group}</div>
+        <div>🏆 ${match.stage}</div>
       </div>
 
     </div>
@@ -150,33 +180,56 @@ function renderSchedule(matches) {
 
 }
 
-/* TODAY */
+/* RENDER TABS */
 
-function renderToday(matches) {
+function renderTabs(matches) {
 
-  const today = new Date()
-    .toISOString()
-    .split("T")[0];
+  const today = new Date().toISOString().split("T")[0];
+  const tomorrow = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split("T")[0];
 
-  const todays = matches.filter(
-    match => match.date === today
-  );
+  const todayMatches = matches.filter(match => match.date === today);
+  const tomorrowMatches = matches.filter(match => match.date === tomorrow);
 
-  if (!todays.length) {
+  let html = "";
 
-    todayMatches.innerHTML = `
-      <div class="text-zinc-500">
-        No matches today
-      </div>
-    `;
+  if (todayMatches.length === 0 && tomorrowMatches.length === 0) {
+    html = `<div class="text-zinc-500">No matches today or tomorrow</div>`;
+  } else {
+    if (todayMatches.length > 0) {
+      html += `<div class="mb-6">
+        <h3 class="text-lg font-semibold mb-3">Today</h3>`;
+      todayMatches.forEach(match => {
+        html += createMatchCard(match, true);
+      });
+      html += `</div>`;
+    }
 
-    return;
+    if (tomorrowMatches.length > 0) {
+      html += `<div>
+        <h3 class="text-lg font-semibold mb-3">Tomorrow</h3>`;
+      tomorrowMatches.forEach(match => {
+        html += createMatchCard(match, true);
+      });
+      html += `</div>`;
+    }
   }
 
-  todayMatches.innerHTML = "";
+  tabMatches.innerHTML = html;
 
-  todays.forEach(match => {
-    todayMatches.innerHTML += createMatchCard(match, true);
+}
+
+/* POPULATE TIMEZONE SELECT */
+
+function populateTimezones() {
+
+  timezoneSelect.innerHTML = "";
+
+  timezones.forEach(tz => {
+    const option = document.createElement("option");
+    option.value = tz;
+    option.textContent = tz;
+    if (tz === selectedTimezone) option.selected = true;
+    timezoneSelect.appendChild(option);
   });
 
 }
@@ -196,6 +249,16 @@ function filterMatches() {
 
 }
 
+/* EVENT LISTENERS */
+
+timezoneSelect.addEventListener("change", (e) => {
+  selectedTimezone = e.target.value;
+  renderSchedule(allMatches);
+  renderTabs(allMatches);
+});
+
+searchInput.addEventListener("input", filterMatches);
+
 /* INIT */
 
 async function init() {
@@ -210,12 +273,10 @@ async function init() {
       new Date(b.timeUTC)
   );
 
-  renderToday(allMatches);
-
+  populateTimezones();
+  renderTabs(allMatches);
   renderSchedule(allMatches);
 
 }
-
-searchInput.addEventListener("input", filterMatches);
 
 init();
