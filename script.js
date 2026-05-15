@@ -25,20 +25,14 @@ const flags = {
 /* TIMEZONE LIST */
 
 const timezones = [
-  "UTC",
   "Asia/Kolkata",
-  "Asia/Dubai",
-  "Asia/Bangkok",
-  "Asia/Singapore",
   "Europe/London",
-  "Europe/Paris",
-  "Europe/Berlin",
   "America/New_York",
   "America/Chicago",
-  "America/Denver",
   "America/Los_Angeles",
-  "Australia/Sydney",
-  "Australia/Melbourne"
+  "Europe/Paris",
+  "Asia/Tokyo",
+  "Australia/Sydney"
 ];
 
 /* FORMAT TIME */
@@ -218,18 +212,39 @@ function renderTabs(matches) {
 
 }
 
-/* POPULATE TIMEZONE SELECT */
+/* RENDER ALL */
 
-function populateTimezones() {
+function renderAll() {
+  renderSchedule(allMatches);
+  renderTabs(allMatches);
+}
 
-  timezoneSelect.innerHTML = "";
+/* SETUP TIMEZONES */
+
+function setupTimezones() {
 
   timezones.forEach(tz => {
+
     const option = document.createElement("option");
+
     option.value = tz;
+
     option.textContent = tz;
-    if (tz === selectedTimezone) option.selected = true;
+
+    if (tz === selectedTimezone) {
+      option.selected = true;
+    }
+
     timezoneSelect.appendChild(option);
+
+  });
+
+  timezoneSelect.addEventListener("change", e => {
+
+    selectedTimezone = e.target.value;
+
+    renderAll();
+
   });
 
 }
@@ -251,12 +266,6 @@ function filterMatches() {
 
 /* EVENT LISTENERS */
 
-timezoneSelect.addEventListener("change", (e) => {
-  selectedTimezone = e.target.value;
-  renderSchedule(allMatches);
-  renderTabs(allMatches);
-});
-
 searchInput.addEventListener("input", filterMatches);
 
 /* INIT */
@@ -273,9 +282,8 @@ async function init() {
       new Date(b.timeUTC)
   );
 
-  populateTimezones();
-  renderTabs(allMatches);
-  renderSchedule(allMatches);
+  setupTimezones();
+  renderAll();
 
 }
 
