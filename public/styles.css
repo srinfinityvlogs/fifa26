@@ -174,28 +174,32 @@ body {
 
 .teams-grid {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   width: 100%;
-  gap: 10px;
+  gap: 8px;
 }
 
 /* LEFT TEAM */
 .team-left {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   justify-self: start;
+  min-width: 0; /* allow this flex item to shrink below its content size */
+  overflow: hidden;
 }
 
 /* RIGHT TEAM (FORCE EDGE) */
 .team-right {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   justify-self: end;
   flex-direction: row-reverse;
   text-align: right;
+  min-width: 0;
+  overflow: hidden;
 }
 
 /* TEAM NAME */
@@ -203,6 +207,10 @@ body {
   font-size: 24px;
   font-weight: 800;
   line-height: 1.2;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* VS CENTER */
@@ -228,12 +236,18 @@ body {
 ========================================= */
 
 .match-info-inline {
+  position: relative;
   margin-top: 26px;
   display: flex;
   flex-wrap: nowrap;
   gap: 10px;
   align-items: center;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* mask the right edge so a partially-visible chip fades out instead of
+     looking like a hard, broken cutoff -- signals "scroll for more". */
+  mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
 }
 
 .info-chip {
@@ -257,16 +271,16 @@ body {
 @media (max-width: 768px) {
 
   .team-name {
-    font-size: 18px;
+    font-size: 15px;
   }
 
   .team img {
-    width: 42px;
-    height: 32px;
+    width: 32px;
+    height: 24px;
   }
 
   .match-card {
-    padding: 20px;
+    padding: 18px;
     border-radius: 22px;
   }
 
@@ -275,12 +289,30 @@ body {
   }
 
   .teams-grid {
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 4px;
+  }
+
+  .team-left,
+  .team-right {
+    gap: 6px;
   }
 
   .tab-button {
     padding: 10px 16px;
     font-size: 13.5px;
+  }
+
+  .match-info-inline {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .info-chip {
+    font-size: 12.5px;
+    padding: 8px 12px;
   }
 }
 
@@ -325,18 +357,9 @@ body {
   min-width: 70px;
 }
 
-/* keep center column stable */
+/* keep center column stable, and still shrinkable on narrow screens */
 .teams-grid {
-  grid-template-columns: 1fr auto 1fr;
-}
-
-/* prevent VS/score shift */
-.score {
-  font-size: 20px;
-  font-weight: 900;
-  color: #00e5ff;
-  min-width: 70px;
-  text-align: center;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
 }
 
 .status {
