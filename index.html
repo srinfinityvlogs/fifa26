@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    FIFA World Cup 2026 Schedule
+  </title>
+
+  <!-- TAILWIND -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FONT -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- STYLES -->
+  <link rel="stylesheet" href="styles.css" />
+
+</head>
+
+<body class="bg-black text-white">
+
+  <!-- BACKGROUND -->
+  <div class="bg-gradient"></div>
+
+  <!-- HEADER -->
+  <header
+    class="sticky top-0 z-50 border-b border-white/10 backdrop-blur-xl bg-black/60"
+  >
+
+    <div
+      class="max-w-7xl mx-auto px-4 py-5"
+    >
+
+      <div
+        class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5"
+      >
+
+        <!-- TITLE -->
+        <div>
+
+          <h1
+            class="text-3xl md:text-5xl font-extrabold"
+          >
+            FIFA 2026
+          </h1>
+
+          <p class="text-zinc-400 mt-2">
+            Match Schedule • Local Timezone
+          </p>
+
+        </div>
+
+        <!-- CONTROLS -->
+        <div
+          class="flex flex-col md:flex-row gap-3 w-full lg:w-auto"
+        >
+
+          <!-- SEARCH -->
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search team..."
+            class="search-box"
+          />
+
+          <!-- TIMEZONE -->
+          <select
+            id="timezoneSelect"
+            class="search-box"
+          >
+          </select>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- MAIN -->
+  <main
+    class="max-w-6xl mx-auto px-4 py-8"
+  >
+
+    <!-- TABS -->
+    <section class="mb-10">
+
+      <div class="flex gap-3 mb-6">
+
+        <button
+          class="tab-button active-tab"
+          data-tab="today"
+        >
+          Today
+        </button>
+
+        <button
+          class="tab-button"
+          data-tab="tomorrow"
+        >
+          Tomorrow
+        </button>
+
+      </div>
+
+      <!-- TAB CONTENT -->
+      <div
+        id="tabMatches"
+        class="space-y-4"
+      >
+      </div>
+
+    </section>
+
+    <!-- FULL SCHEDULE -->
+    <section>
+
+      <div class="section-title">
+        📅 Full Schedule
+      </div>
+
+      <div id="matchesContainer"></div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer
+    class="py-12 text-center text-zinc-500 text-sm"
+  >
+
+    Built for football fans ⚽
+
+  </footer>
+
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>
