@@ -186,7 +186,7 @@ function getStatusUI(status) {
     // We never caught this match's live window, and the API hasn't
     // confirmed its result yet (it'll be backfilled by the daily
     // catch-up). Clearly distinct from a genuinely upcoming match.
-    return `<span class="status scheduled">❔ Likely Finished — result pending</span>`;
+    return `<span class="status scheduled">❔ Result Pending</span>`;
   }
 
   return `<span class="status scheduled">⏳ SCHEDULED</span>`;
@@ -354,8 +354,8 @@ function computeStandings(groupMatches) {
 function createStandingsTable(standings) {
   const rows = standings.map((t, i) => `
     <tr class="${i < 2 ? "qualifying" : ""}">
-      <td>${i + 1}</td>
-      <td>
+      <td class="sticky-col sticky-col-1">${i + 1}</td>
+      <td class="sticky-col sticky-col-2">
         <div class="standings-team">
           ${getFlag(t.name)}
           <span>${t.name}</span>
@@ -373,25 +373,27 @@ function createStandingsTable(standings) {
   `).join("");
 
   return `
-    <table class="standings-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Team</th>
-          <th class="numeric">P</th>
-          <th class="numeric">W</th>
-          <th class="numeric">D</th>
-          <th class="numeric">L</th>
-          <th class="numeric">GF</th>
-          <th class="numeric">GA</th>
-          <th class="numeric">GD</th>
-          <th class="numeric">Pts</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${rows}
-      </tbody>
-    </table>
+    <div class="standings-scroll">
+      <table class="standings-table">
+        <thead>
+          <tr>
+            <th class="sticky-col sticky-col-1">#</th>
+            <th class="sticky-col sticky-col-2">Team</th>
+            <th class="numeric">P</th>
+            <th class="numeric">W</th>
+            <th class="numeric">D</th>
+            <th class="numeric">L</th>
+            <th class="numeric">GF</th>
+            <th class="numeric">GA</th>
+            <th class="numeric">GD</th>
+            <th class="numeric">Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows}
+        </tbody>
+      </table>
+    </div>
   `;
 }
 
