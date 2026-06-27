@@ -14,7 +14,24 @@
     "score": {
       "home": 2,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Julián Quiñones",
+        "minute": "9",
+        "team": "Mexico",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Raúl Jiménez",
+        "minute": "67",
+        "team": "Mexico",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "2",
@@ -31,7 +48,32 @@
     "score": {
       "home": 2,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Hwang In-Beom",
+        "minute": "67",
+        "team": "South Korea",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Oh Hyeon-Gyu",
+        "minute": "80",
+        "team": "South Korea",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Ladislav Krejcí",
+        "minute": "59",
+        "team": "Czech Republic",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "3",
@@ -48,7 +90,25 @@
     "score": {
       "home": 1,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Michal Sadílek",
+        "minute": "6",
+        "team": "Czech Republic",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Teboho Mokoena",
+        "minute": "83",
+        "team": "South Africa",
+        "ownGoal": false,
+        "penalty": true
+      }
+    ]
   },
   {
     "id": "4",
@@ -65,7 +125,17 @@
     "score": {
       "home": 1,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Luis Romo",
+        "minute": "50",
+        "team": "Mexico",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "5",
@@ -82,7 +152,31 @@
     "score": {
       "home": 0,
       "away": 3
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": [
+      {
+        "name": "Mateo Chávez",
+        "minute": "55",
+        "team": "Mexico",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Julián Quiñones",
+        "minute": "61",
+        "team": "Mexico",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Álvaro Fidalgo",
+        "minute": "90+4",
+        "team": "Mexico",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "6",
@@ -99,7 +193,17 @@
     "score": {
       "home": 1,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Thapelo Maseko",
+        "minute": "63",
+        "team": "South Africa",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "7",
@@ -116,7 +220,25 @@
     "score": {
       "home": 1,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Cyle Larin",
+        "minute": "78",
+        "team": "Canada",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Jovo Lukić",
+        "minute": "21",
+        "team": "Bosnia & Herzegovina",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "8",
@@ -133,7 +255,25 @@
     "score": {
       "home": 1,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Miro Muheim",
+        "minute": "90+4",
+        "team": "Switzerland",
+        "ownGoal": true,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Breel Embolo",
+        "minute": "17",
+        "team": "Switzerland",
+        "ownGoal": false,
+        "penalty": true
+      }
+    ]
   },
   {
     "id": "9",
@@ -150,7 +290,46 @@
     "score": {
       "home": 4,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Johan Manzambi",
+        "minute": "74",
+        "team": "Switzerland",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Johan Manzambi",
+        "minute": "90",
+        "team": "Switzerland",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Rubén Vargas",
+        "minute": "84",
+        "team": "Switzerland",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Granit Xhaka",
+        "minute": "90+7",
+        "team": "Switzerland",
+        "ownGoal": false,
+        "penalty": true
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Ermin Mahmic",
+        "minute": "90+3",
+        "team": "Bosnia & Herzegovina",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "10",
@@ -167,7 +346,52 @@
     "score": {
       "home": 6,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Cyle Larin",
+        "minute": "16",
+        "team": "Canada",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Jonathan David",
+        "minute": "29",
+        "team": "Canada",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Jonathan David",
+        "minute": "45+3",
+        "team": "Canada",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Nathan Saliba",
+        "minute": "64",
+        "team": "Canada",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Mohamed Manai",
+        "minute": "75",
+        "team": "Qatar",
+        "ownGoal": true,
+        "penalty": false
+      },
+      {
+        "name": "Jonathan David",
+        "minute": "90+2",
+        "team": "Canada",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "11",
@@ -184,7 +408,32 @@
     "score": {
       "home": 2,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Rubén Vargas",
+        "minute": "46",
+        "team": "Switzerland",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Johan Manzambi",
+        "minute": "57",
+        "team": "Switzerland",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Promise David",
+        "minute": "76",
+        "team": "Canada",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "12",
@@ -201,7 +450,39 @@
     "score": {
       "home": 3,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Kerim Alajbegovic",
+        "minute": "29",
+        "team": "Bosnia & Herzegovina",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Mahmoud Abunada",
+        "minute": "34",
+        "team": "Qatar",
+        "ownGoal": true,
+        "penalty": false
+      },
+      {
+        "name": "Ermin Mahmic",
+        "minute": "80",
+        "team": "Bosnia & Herzegovina",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Hassan Al-Haydos",
+        "minute": "42",
+        "team": "Qatar",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "13",
@@ -218,7 +499,25 @@
     "score": {
       "home": 1,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Vinícius Júnior",
+        "minute": "32",
+        "team": "Brazil",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Ismael Saibari",
+        "minute": "21",
+        "team": "Morocco",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "14",
@@ -235,7 +534,17 @@
     "score": {
       "home": 0,
       "away": 1
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": [
+      {
+        "name": "John McGinn",
+        "minute": "28",
+        "team": "Scotland",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "15",
@@ -252,7 +561,17 @@
     "score": {
       "home": 0,
       "away": 1
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": [
+      {
+        "name": "Ismael Saibari",
+        "minute": "2",
+        "team": "Morocco",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "16",
@@ -269,7 +588,31 @@
     "score": {
       "home": 3,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Matheus Cunha",
+        "minute": "23",
+        "team": "Brazil",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Matheus Cunha",
+        "minute": "36",
+        "team": "Brazil",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Vinícius Júnior",
+        "minute": "45+3",
+        "team": "Brazil",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "17",
@@ -286,7 +629,31 @@
     "score": {
       "home": 0,
       "away": 3
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": [
+      {
+        "name": "Vinícius Júnior",
+        "minute": "7",
+        "team": "Brazil",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Vinícius Júnior",
+        "minute": "45+3",
+        "team": "Brazil",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Matheus Cunha",
+        "minute": "60",
+        "team": "Brazil",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "18",
@@ -303,7 +670,53 @@
     "score": {
       "home": 4,
       "away": 2
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Achraf Hakimi",
+        "minute": "39",
+        "team": "Morocco",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Ismael Saibari",
+        "minute": "45+1",
+        "team": "Morocco",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Soufiane Rahimi",
+        "minute": "78",
+        "team": "Morocco",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Gessime Yassine",
+        "minute": "89",
+        "team": "Morocco",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Yassine Bounou",
+        "minute": "10",
+        "team": "Morocco",
+        "ownGoal": true,
+        "penalty": false
+      },
+      {
+        "name": "Wilson Isidor",
+        "minute": "43",
+        "team": "Haiti",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "19",
@@ -320,7 +733,46 @@
     "score": {
       "home": 4,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Damian Bobadilla",
+        "minute": "7",
+        "team": "Paraguay",
+        "ownGoal": true,
+        "penalty": false
+      },
+      {
+        "name": "Folarin Balogun",
+        "minute": "31",
+        "team": "USA",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Folarin Balogun",
+        "minute": "45+5",
+        "team": "USA",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Giovanni Reyna",
+        "minute": "90+8",
+        "team": "USA",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Mauricio",
+        "minute": "73",
+        "team": "Paraguay",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "20",
@@ -337,7 +789,24 @@
     "score": {
       "home": 2,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Nestory Irankunda",
+        "minute": "27",
+        "team": "Australia",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Connor Metcalfe",
+        "minute": "75",
+        "team": "Australia",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "21",
@@ -354,7 +823,24 @@
     "score": {
       "home": 2,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Cameron Burgess",
+        "minute": "11",
+        "team": "Australia",
+        "ownGoal": true,
+        "penalty": false
+      },
+      {
+        "name": "Alex Freeman",
+        "minute": "43",
+        "team": "USA",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "22",
@@ -371,7 +857,17 @@
     "score": {
       "home": 0,
       "away": 1
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": [
+      {
+        "name": "Matías Galarza",
+        "minute": "2",
+        "team": "Paraguay",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "23",
@@ -388,7 +884,46 @@
     "score": {
       "home": 3,
       "away": 2
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Arda Güler",
+        "minute": "10",
+        "team": "Turkey",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Baris Alper Yilmaz",
+        "minute": "31",
+        "team": "Turkey",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Kaan Ayhan",
+        "minute": "90+8",
+        "team": "Turkey",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Auston Trusty",
+        "minute": "3",
+        "team": "USA",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Sebastian Berhalter",
+        "minute": "49",
+        "team": "USA",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "24",
@@ -405,7 +940,9 @@
     "score": {
       "home": 0,
       "away": 0
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "25",
@@ -422,7 +959,67 @@
     "score": {
       "home": 7,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Felix Nmecha",
+        "minute": "6",
+        "team": "Germany",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Nico Schlotterbeck",
+        "minute": "38",
+        "team": "Germany",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Kai Havertz",
+        "minute": "45+5",
+        "team": "Germany",
+        "ownGoal": false,
+        "penalty": true
+      },
+      {
+        "name": "Kai Havertz",
+        "minute": "88",
+        "team": "Germany",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Jamal Musiala",
+        "minute": "47",
+        "team": "Germany",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Nathaniel Brown",
+        "minute": "68",
+        "team": "Germany",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Deniz Undav",
+        "minute": "78",
+        "team": "Germany",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Livano Comenencia",
+        "minute": "21",
+        "team": "Curaçao",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "26",
@@ -439,7 +1036,17 @@
     "score": {
       "home": 1,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Amad Diallo",
+        "minute": "90",
+        "team": "Ivory Coast",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "27",
@@ -456,7 +1063,32 @@
     "score": {
       "home": 2,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Deniz Undav",
+        "minute": "68",
+        "team": "Germany",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Deniz Undav",
+        "minute": "90+4",
+        "team": "Germany",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Franck Kessié",
+        "minute": "30",
+        "team": "Ivory Coast",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "28",
@@ -473,7 +1105,9 @@
     "score": {
       "home": 0,
       "away": 0
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "29",
@@ -490,7 +1124,24 @@
     "score": {
       "home": 0,
       "away": 2
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": [
+      {
+        "name": "Nicolas Pépé",
+        "minute": "7",
+        "team": "Ivory Coast",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Nicolas Pépé",
+        "minute": "64",
+        "team": "Ivory Coast",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "30",
@@ -507,7 +1158,32 @@
     "score": {
       "home": 2,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Nilson Angulo",
+        "minute": "9",
+        "team": "Ecuador",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Gonzalo Plata",
+        "minute": "77",
+        "team": "Ecuador",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Leroy Sané",
+        "minute": "2",
+        "team": "Germany",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "31",
@@ -524,7 +1200,39 @@
     "score": {
       "home": 2,
       "away": 2
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Virgil van Dijk",
+        "minute": "51",
+        "team": "Netherlands",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Crysencio Summerville",
+        "minute": "64",
+        "team": "Netherlands",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Keito Nakamura",
+        "minute": "57",
+        "team": "Japan",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Daichi Kamada",
+        "minute": "88",
+        "team": "Japan",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "32",
@@ -541,7 +1249,53 @@
     "score": {
       "home": 5,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Yasin Ayari",
+        "minute": "7",
+        "team": "Sweden",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Yasin Ayari",
+        "minute": "90+6",
+        "team": "Sweden",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Alexander Isak",
+        "minute": "30",
+        "team": "Sweden",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Viktor Gyökeres",
+        "minute": "59",
+        "team": "Sweden",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Mattias Svanberg",
+        "minute": "84",
+        "team": "Sweden",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Omar Rekik",
+        "minute": "43",
+        "team": "Tunisia",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "33",
@@ -558,7 +1312,53 @@
     "score": {
       "home": 5,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Brian Brobbey",
+        "minute": "5",
+        "team": "Netherlands",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Brian Brobbey",
+        "minute": "17",
+        "team": "Netherlands",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Cody Gakpo",
+        "minute": "47",
+        "team": "Netherlands",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Cody Gakpo",
+        "minute": "54",
+        "team": "Netherlands",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Crysencio Summerville",
+        "minute": "89",
+        "team": "Netherlands",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Anthony Elanga",
+        "minute": "59",
+        "team": "Sweden",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "34",
@@ -575,7 +1375,38 @@
     "score": {
       "home": 0,
       "away": 4
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": [
+      {
+        "name": "Daichi Kamada",
+        "minute": "4",
+        "team": "Japan",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Ayase Ueda",
+        "minute": "31",
+        "team": "Japan",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Ayase Ueda",
+        "minute": "83",
+        "team": "Japan",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Junya Ito",
+        "minute": "69",
+        "team": "Japan",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "35",
@@ -592,7 +1423,25 @@
     "score": {
       "home": 1,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Daizen Maeda",
+        "minute": "56",
+        "team": "Japan",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Anthony Elanga",
+        "minute": "62",
+        "team": "Sweden",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "36",
@@ -609,7 +1458,39 @@
     "score": {
       "home": 1,
       "away": 3
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Hazem Mastouri",
+        "minute": "54",
+        "team": "Tunisia",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Ellyes Skhiri",
+        "minute": "3",
+        "team": "Tunisia",
+        "ownGoal": true,
+        "penalty": false
+      },
+      {
+        "name": "Brian Brobbey",
+        "minute": "7",
+        "team": "Netherlands",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Jan Paul van Hecke",
+        "minute": "62",
+        "team": "Netherlands",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "37",
@@ -626,7 +1507,25 @@
     "score": {
       "home": 1,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Mohamed Hany",
+        "minute": "66",
+        "team": "Egypt",
+        "ownGoal": true,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Emam Ashour",
+        "minute": "19",
+        "team": "Egypt",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "38",
@@ -643,7 +1542,39 @@
     "score": {
       "home": 2,
       "away": 2
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Ramin Rezaeian",
+        "minute": "32",
+        "team": "Iran",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Mohammad Mohebbi",
+        "minute": "64",
+        "team": "Iran",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Elijah Just",
+        "minute": "7",
+        "team": "New Zealand",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Elijah Just",
+        "minute": "54",
+        "team": "New Zealand",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "39",
@@ -660,7 +1591,9 @@
     "score": {
       "home": 0,
       "away": 0
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "40",
@@ -677,7 +1610,39 @@
     "score": {
       "home": 1,
       "away": 3
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Finn Surman",
+        "minute": "15",
+        "team": "New Zealand",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Mostafa Zico",
+        "minute": "58",
+        "team": "Egypt",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Mohamed Salah",
+        "minute": "67",
+        "team": "Egypt",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Trézéguet",
+        "minute": "82",
+        "team": "Egypt",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "41",
@@ -694,7 +1659,25 @@
     "score": {
       "home": 1,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Mahmoud Saber",
+        "minute": "5",
+        "team": "Egypt",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Ramin Rezaeian",
+        "minute": "14",
+        "team": "Iran",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "42",
@@ -711,7 +1694,53 @@
     "score": {
       "home": 1,
       "away": 5
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Elijah Just",
+        "minute": "84",
+        "team": "New Zealand",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Leandro Trossard",
+        "minute": "28",
+        "team": "Belgium",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Leandro Trossard",
+        "minute": "50",
+        "team": "Belgium",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Kevin De Bruyne",
+        "minute": "66",
+        "team": "Belgium",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Romelu Lukaku",
+        "minute": "86",
+        "team": "Belgium",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Alexis Saelemaekers",
+        "minute": "90+4",
+        "team": "Belgium",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "43",
@@ -728,7 +1757,9 @@
     "score": {
       "home": 0,
       "away": 0
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "44",
@@ -745,7 +1776,25 @@
     "score": {
       "home": 1,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Abdulelah Al-Amri",
+        "minute": "41",
+        "team": "Saudi Arabia",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Maxi Araújo",
+        "minute": "80",
+        "team": "Uruguay",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "45",
@@ -762,7 +1811,38 @@
     "score": {
       "home": 4,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Lamine Yamal",
+        "minute": "10",
+        "team": "Spain",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Mikel Oyarzabal",
+        "minute": "21",
+        "team": "Spain",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Mikel Oyarzabal",
+        "minute": "24",
+        "team": "Spain",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Hassan Al-Tambakti",
+        "minute": "49",
+        "team": "Saudi Arabia",
+        "ownGoal": true,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "46",
@@ -779,7 +1859,39 @@
     "score": {
       "home": 2,
       "away": 2
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Maxi Araújo",
+        "minute": "44",
+        "team": "Uruguay",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Agustín Cano",
+        "minute": "45+6",
+        "team": "Uruguay",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Kevin Pina",
+        "minute": "21",
+        "team": "Cape Verde",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Hélio Varela",
+        "minute": "61",
+        "team": "Cape Verde",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "47",
@@ -796,7 +1908,9 @@
     "score": {
       "home": 0,
       "away": 0
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "48",
@@ -813,7 +1927,17 @@
     "score": {
       "home": 0,
       "away": 1
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": [
+      {
+        "name": "Álex Baena",
+        "minute": "42",
+        "team": "Spain",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "49",
@@ -830,7 +1954,39 @@
     "score": {
       "home": 3,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Kylian Mbappé",
+        "minute": "66",
+        "team": "France",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Kylian Mbappé",
+        "minute": "90+6",
+        "team": "France",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Bradley Barcola",
+        "minute": "82",
+        "team": "France",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Ibrahim Mbaye",
+        "minute": "90+5",
+        "team": "Senegal",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "50",
@@ -847,7 +2003,46 @@
     "score": {
       "home": 1,
       "away": 4
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Aymen Hussein",
+        "minute": "39",
+        "team": "Iraq",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Erling Haaland",
+        "minute": "29",
+        "team": "Norway",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Erling Haaland",
+        "minute": "43",
+        "team": "Norway",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Leo Østigard",
+        "minute": "76",
+        "team": "Norway",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Aymen Hussein",
+        "minute": "90+6",
+        "team": "Iraq",
+        "ownGoal": true,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "51",
@@ -864,7 +2059,31 @@
     "score": {
       "home": 3,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Kylian Mbappé",
+        "minute": "14",
+        "team": "France",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Kylian Mbappé",
+        "minute": "54",
+        "team": "France",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Ousmane Dembélé",
+        "minute": "66",
+        "team": "France",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "52",
@@ -881,7 +2100,46 @@
     "score": {
       "home": 3,
       "away": 2
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Marcus Holmgren Pedersen",
+        "minute": "43",
+        "team": "Norway",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Erling Haaland",
+        "minute": "48",
+        "team": "Norway",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Erling Haaland",
+        "minute": "58",
+        "team": "Norway",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Ismaïla Sarr",
+        "minute": "53",
+        "team": "Senegal",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Ismaïla Sarr",
+        "minute": "90+3",
+        "team": "Senegal",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "53",
@@ -898,7 +2156,46 @@
     "score": {
       "home": 1,
       "away": 4
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Thelo Aasgaard",
+        "minute": "21",
+        "team": "Norway",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Ousmane Dembélé",
+        "minute": "7",
+        "team": "France",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Ousmane Dembélé",
+        "minute": "20",
+        "team": "France",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Ousmane Dembélé",
+        "minute": "32",
+        "team": "France",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Désiré Doué",
+        "minute": "90+4",
+        "team": "France",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "54",
@@ -915,7 +2212,45 @@
     "score": {
       "home": 5,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Habib Diarra",
+        "minute": "4",
+        "team": "Senegal",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Ismaïla Sarr",
+        "minute": "56",
+        "team": "Senegal",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Pape Gueye",
+        "minute": "59",
+        "team": "Senegal",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Pape Gueye",
+        "minute": "71",
+        "team": "Senegal",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Iliman Ndiaye",
+        "minute": "82",
+        "team": "Senegal",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "55",
@@ -932,7 +2267,31 @@
     "score": {
       "home": 3,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Lionel Messi",
+        "minute": "17",
+        "team": "Argentina",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Lionel Messi",
+        "minute": "60",
+        "team": "Argentina",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Lionel Messi",
+        "minute": "76",
+        "team": "Argentina",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "56",
@@ -949,7 +2308,39 @@
     "score": {
       "home": 3,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Romano Schmid",
+        "minute": "21",
+        "team": "Austria",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Yazan Al-Arab",
+        "minute": "76",
+        "team": "Jordan",
+        "ownGoal": true,
+        "penalty": false
+      },
+      {
+        "name": "Marko Arnautovic",
+        "minute": "90+12",
+        "team": "Austria",
+        "ownGoal": false,
+        "penalty": true
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Ali Olwan",
+        "minute": "50",
+        "team": "Jordan",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "57",
@@ -966,7 +2357,24 @@
     "score": {
       "home": 2,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Lionel Messi",
+        "minute": "38",
+        "team": "Argentina",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Lionel Messi",
+        "minute": "90+5",
+        "team": "Argentina",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "58",
@@ -983,7 +2391,32 @@
     "score": {
       "home": 1,
       "away": 2
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Nizar Al-Rashdan",
+        "minute": "36",
+        "team": "Jordan",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Nadhir Benbouali",
+        "minute": "69",
+        "team": "Algeria",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Amine Gouiri",
+        "minute": "82",
+        "team": "Algeria",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "59",
@@ -1000,7 +2433,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "60",
@@ -1017,7 +2452,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "61",
@@ -1034,7 +2471,25 @@
     "score": {
       "home": 1,
       "away": 1
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "João Neves",
+        "minute": "6",
+        "team": "Portugal",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Yoane Wissa",
+        "minute": "45+5",
+        "team": "DR Congo",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "62",
@@ -1051,7 +2506,39 @@
     "score": {
       "home": 1,
       "away": 3
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Abbosbek Fayzullaev",
+        "minute": "60",
+        "team": "Uzbekistan",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Daniel Muñoz",
+        "minute": "40",
+        "team": "Colombia",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Luis Díaz",
+        "minute": "65",
+        "team": "Colombia",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Jáminton Campaz",
+        "minute": "90+9",
+        "team": "Colombia",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "63",
@@ -1068,7 +2555,45 @@
     "score": {
       "home": 5,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Cristiano Ronaldo",
+        "minute": "6",
+        "team": "Portugal",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Cristiano Ronaldo",
+        "minute": "39",
+        "team": "Portugal",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Nuno Mendes",
+        "minute": "17",
+        "team": "Portugal",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Abduvohid Nematov",
+        "minute": "60",
+        "team": "Uzbekistan",
+        "ownGoal": true,
+        "penalty": false
+      },
+      {
+        "name": "Rafael Leão",
+        "minute": "87",
+        "team": "Portugal",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "64",
@@ -1085,7 +2610,17 @@
     "score": {
       "home": 1,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Daniel Muñoz",
+        "minute": "76",
+        "team": "Colombia",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "65",
@@ -1102,7 +2637,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "66",
@@ -1119,7 +2656,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "67",
@@ -1136,7 +2675,53 @@
     "score": {
       "home": 4,
       "away": 2
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Harry Kane",
+        "minute": "12",
+        "team": "England",
+        "ownGoal": false,
+        "penalty": true
+      },
+      {
+        "name": "Harry Kane",
+        "minute": "42",
+        "team": "England",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Jude Bellingham",
+        "minute": "47",
+        "team": "England",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Marcus Rashford",
+        "minute": "85",
+        "team": "England",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Martin Baturina",
+        "minute": "36",
+        "team": "Croatia",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Petar Musa",
+        "minute": "45+5",
+        "team": "Croatia",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "68",
@@ -1153,7 +2738,17 @@
     "score": {
       "home": 1,
       "away": 0
-    }
+    },
+    "goalsHome": [
+      {
+        "name": "Caleb Yirenkyi",
+        "minute": "90+5",
+        "team": "Ghana",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": []
   },
   {
     "id": "69",
@@ -1170,7 +2765,9 @@
     "score": {
       "home": 0,
       "away": 0
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "70",
@@ -1187,7 +2784,17 @@
     "score": {
       "home": 0,
       "away": 1
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": [
+      {
+        "name": "Ante Budimir",
+        "minute": "54",
+        "team": "Croatia",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "71",
@@ -1204,7 +2811,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "72",
@@ -1221,7 +2830,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "73",
@@ -1238,7 +2849,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "74",
@@ -1255,7 +2868,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "75",
@@ -1272,7 +2887,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "76",
@@ -1289,7 +2906,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "77",
@@ -1306,7 +2925,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "78",
@@ -1323,7 +2944,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "79",
@@ -1340,7 +2963,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "80",
@@ -1357,7 +2982,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "81",
@@ -1374,7 +3001,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "82",
@@ -1391,7 +3020,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "83",
@@ -1408,7 +3039,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "84",
@@ -1425,7 +3058,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "85",
@@ -1442,7 +3077,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "86",
@@ -1459,7 +3096,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "87",
@@ -1476,7 +3115,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "88",
@@ -1493,7 +3134,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "89",
@@ -1510,7 +3153,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "90",
@@ -1527,7 +3172,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "91",
@@ -1544,7 +3191,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "92",
@@ -1561,7 +3210,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "93",
@@ -1578,7 +3229,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "94",
@@ -1595,7 +3248,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "95",
@@ -1612,7 +3267,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "96",
@@ -1629,7 +3286,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "97",
@@ -1646,7 +3305,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "98",
@@ -1663,7 +3324,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "99",
@@ -1680,7 +3343,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "100",
@@ -1697,7 +3362,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "101",
@@ -1714,7 +3381,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "102",
@@ -1731,7 +3400,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "103",
@@ -1748,7 +3419,9 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   },
   {
     "id": "104",
@@ -1765,6 +3438,8 @@
     "score": {
       "home": null,
       "away": null
-    }
+    },
+    "goalsHome": [],
+    "goalsAway": []
   }
 ]

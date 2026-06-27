@@ -1,7 +1,8 @@
 # FIFA World Cup 2026 Live Dashboard (IST)
 
 A web app showing FIFA World Cup 2026 schedule and results, with real final
-scores, timezone conversion, and optional live in-progress badges.
+scores, goal scorers (including own goals and penalties), timezone
+conversion, group standings, and optional live in-progress badges.
 
 ## How it gets its data
 

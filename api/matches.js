@@ -40,6 +40,19 @@ function parseTimeToUtc(dateStr, timeStr) {
   return local.toISOString().replace(/\.\d{3}Z$/, "Z");
 }
 
+function parseGoals(goalsArray, benefitingTeam, otherTeam) {
+  return (goalsArray || []).map((g) => ({
+    name: g.name,
+    minute: g.minute,
+    // goals1/goals2 are keyed by which side the goal counts FOR. A normal
+    // goal's scorer plays for that same side. An own goal's scorer plays
+    // for the OTHER side, even though it counts for this side's score.
+    team: g.owngoal ? otherTeam : benefitingTeam,
+    ownGoal: Boolean(g.owngoal),
+    penalty: Boolean(g.penalty),
+  }));
+}
+
 function mapOpenFootballMatch(m, index) {
   const timeUTC = parseTimeToUtc(m.date, m.time);
   const isGroupStage = m.round.startsWith("Matchday");
@@ -55,6 +68,13 @@ function mapOpenFootballMatch(m, index) {
   const ground = m.ground || "";
   const [stadium, city, hostCountry] = GROUND_MAP[ground] || [ground, ground, ""];
 
+  // goals1 = goals counted for team1's score; goals2 = goals counted for
+  // team2's score. An own-goal entry in goals1 means a team2 player
+  // scored into their own net, so team1's score benefits but the named
+  // player is from team2 (and vice versa for goals2).
+  const goalsHome = parseGoals(m.goals1, m.team1, m.team2);
+  const goalsAway = parseGoals(m.goals2, m.team2, m.team1);
+
   return {
     id: String(m.num || index + 1),
     stage: isGroupStage ? "Group Stage" : m.round,
@@ -68,6 +88,8 @@ function mapOpenFootballMatch(m, index) {
     hostCountry,
     status,
     score,
+    goalsHome,
+    goalsAway,
   };
 }
 

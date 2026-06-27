@@ -196,6 +196,34 @@ function getStatusUI(status) {
    MATCH CARD
 ========================================= */
 
+/* =========================================
+   GOAL SCORERS
+========================================= */
+
+function formatGoalEntry(g) {
+  const suffix = g.ownGoal ? " (OG)" : g.penalty ? " (P)" : "";
+  return `${g.name} ${g.minute}'${suffix}`;
+}
+
+function createGoalScorersBlock(match) {
+  const homeGoals = match.goalsHome || [];
+  const awayGoals = match.goalsAway || [];
+
+  if (homeGoals.length === 0 && awayGoals.length === 0) return "";
+
+  const sortByMinute = (a, b) => parseInt(a.minute) - parseInt(b.minute);
+
+  const homeList = [...homeGoals].sort(sortByMinute).map(formatGoalEntry).join("<br>");
+  const awayList = [...awayGoals].sort(sortByMinute).map(formatGoalEntry).join("<br>");
+
+  return `
+    <div class="goal-scorers">
+      <div class="goal-scorers-col">${homeList}</div>
+      <div class="goal-scorers-col goal-scorers-col-right">${awayList}</div>
+    </div>
+  `;
+}
+
 function createMatchCard(match) {
 
   // Only show a scoreline once the match has actually kicked off.
@@ -236,6 +264,8 @@ function createMatchCard(match) {
         </div>
 
       </div>
+
+      ${hasScore ? createGoalScorersBlock(match) : ""}
 
       <div class="match-info-inline">
 
@@ -365,6 +395,15 @@ function createStandingsTable(standings) {
   `;
 }
 
+function formatCondensedScorers(match) {
+  const all = [...(match.goalsHome || []), ...(match.goalsAway || [])];
+  if (all.length === 0) return "";
+
+  const sorted = [...all].sort((a, b) => parseInt(a.minute) - parseInt(b.minute));
+  const text = sorted.map(formatGoalEntry).join(", ");
+  return `<div class="group-fixture-scorers">⚽ ${text}</div>`;
+}
+
 function createGroupFixtureRow(m) {
   const hasScore =
     m.score && m.score.home !== null && m.score.away !== null && m.status !== "SCHEDULED";
@@ -380,6 +419,7 @@ function createGroupFixtureRow(m) {
         ${score}
         <span>${m.team2}</span>${getFlag(m.team2)}
       </div>
+      ${hasScore ? formatCondensedScorers(m) : ""}
       <div class="group-fixture-meta">
         ${getStatusUI(m.status)} • ${formatMatchTime(m.timeUTC)}
       </div>
