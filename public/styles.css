@@ -967,3 +967,54 @@ body {
     height: 12px;
   }
 }
+
+/* =========================================
+   FAVORITE STAR
+========================================= */
+
+.favorite-star {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.favorite-star:hover {
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.7);
+}
+
+.favorite-star-active {
+  color: #ffd166;
+  background: rgba(255,209,102,0.12);
+  border-color: rgba(255,209,102,0.3);
+}
+
+.favorite-star-active:hover {
+  color: #ffd166;
+  background: rgba(255,209,102,0.2);
+}
+
+@media (max-width: 768px) {
+  .favorite-star {
+    top: 14px;
+    right: 14px;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+}

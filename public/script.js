@@ -27,6 +27,47 @@ let selectedTimezone =
   Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 /* =========================================
+   FAVORITES (persisted locally, per-browser)
+========================================= */
+
+const FAVORITES_KEY = "fifa26_favorites";
+
+function loadFavorites() {
+  try {
+    const raw = localStorage.getItem(FAVORITES_KEY);
+    return new Set(raw ? JSON.parse(raw) : []);
+  } catch {
+    return new Set(); // corrupted/blocked storage shouldn't crash the app
+  }
+}
+
+function saveFavorites(favoritesSet) {
+  try {
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favoritesSet]));
+  } catch {
+    // Storage might be full or blocked (e.g. private browsing) — favoriting
+    // just won't persist across reloads in that case, which is an acceptable
+    // silent degradation rather than a crash.
+  }
+}
+
+let favoriteIds = loadFavorites();
+
+function isFavorite(matchId) {
+  return favoriteIds.has(String(matchId));
+}
+
+function toggleFavorite(matchId) {
+  const id = String(matchId);
+  if (favoriteIds.has(id)) {
+    favoriteIds.delete(id);
+  } else {
+    favoriteIds.add(id);
+  }
+  saveFavorites(favoriteIds);
+}
+
+/* =========================================
    FLAGS
 ========================================= */
 
@@ -219,7 +260,9 @@ function getTabBuckets(matches, timeZone) {
     }
   }
 
-  return { today, tomorrow: tomorrowMatches, previous, all: matches };
+  const favorites = matches.filter(m => isFavorite(m.id));
+
+  return { today, tomorrow: tomorrowMatches, previous, all: matches, favorites };
 }
 
 /* =========================================
@@ -309,8 +352,17 @@ function createMatchCard(match) {
     ? `<div class="score">${match.score.home} - ${match.score.away}</div>`
     : `<div class="vs">VS</div>`;
 
+  const favorited = isFavorite(match.id);
+
   return `
     <div class="match-card">
+
+      <button
+        class="favorite-star ${favorited ? "favorite-star-active" : ""}"
+        data-match-id="${match.id}"
+        aria-label="${favorited ? "Remove from favorites" : "Add to favorites"}"
+        title="${favorited ? "Remove from favorites" : "Add to favorites"}"
+      >${favorited ? "★" : "☆"}</button>
 
       <div class="stage-badge">
         ${match.stage}
@@ -851,6 +903,9 @@ function renderActiveTab(matches) {
   if (tabMatchList.length === 0) {
     tabMatches.innerHTML = "";
     tabEmptyState.classList.remove("hidden");
+    tabEmptyState.textContent = activeTab === "favorites"
+      ? "No favorites yet — tap the ☆ on any match to add it here."
+      : "No matches to show here.";
   } else {
     tabEmptyState.classList.add("hidden");
     tabMatches.innerHTML = tabMatchList.map(createMatchCard).join("");
@@ -931,6 +986,28 @@ function setupTabs() {
 }
 
 /* =========================================
+   FAVORITES UI WIRING
+
+   Uses event delegation on the container (not per-button listeners)
+   since match cards are fully replaced via innerHTML on every render —
+   individual listeners would be destroyed and need re-attaching constantly.
+========================================= */
+
+function setupFavorites() {
+  tabMatches.addEventListener("click", (e) => {
+    const btn = e.target.closest(".favorite-star");
+    if (!btn) return;
+
+    const matchId = btn.dataset.matchId;
+    toggleFavorite(matchId);
+
+    // Re-render just the active tab so the star's visual state updates
+    // immediately, without waiting for the next 30s poll.
+    renderActiveTab(filteredMatches);
+  });
+}
+
+/* =========================================
    INIT
 ========================================= */
 
@@ -944,6 +1021,7 @@ async function init() {
   setupTimezone();
   setupSearch();
   setupTabs();
+  setupFavorites();
 
   // live refresh
   setInterval(async () => {
