@@ -2429,13 +2429,57 @@
     "stadium": "Kansas City Stadium",
     "city": "Kansas City",
     "hostCountry": "USA",
-    "status": "SCHEDULED",
+    "status": "FT",
     "score": {
-      "home": null,
-      "away": null
+      "home": 3,
+      "away": 3
     },
-    "goalsHome": [],
-    "goalsAway": []
+    "goalsHome": [
+      {
+        "name": "Rafik Belghali",
+        "minute": "45",
+        "team": "Algeria",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Riyad Mahrez",
+        "minute": "60",
+        "team": "Algeria",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Riyad Mahrez",
+        "minute": "90+3",
+        "team": "Algeria",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Marko Arnautovic",
+        "minute": "28",
+        "team": "Austria",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Marcel Sabitzer",
+        "minute": "55",
+        "team": "Austria",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Sasa Kalajdzic",
+        "minute": "90+6",
+        "team": "Austria",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "60",
@@ -2448,13 +2492,43 @@
     "stadium": "Dallas Stadium",
     "city": "Arlington",
     "hostCountry": "USA",
-    "status": "SCHEDULED",
+    "status": "FT",
     "score": {
-      "home": null,
-      "away": null
+      "home": 1,
+      "away": 3
     },
-    "goalsHome": [],
-    "goalsAway": []
+    "goalsHome": [
+      {
+        "name": "Mousa Al-Tamari",
+        "minute": "55",
+        "team": "Jordan",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Giovani Lo Celso",
+        "minute": "19",
+        "team": "Argentina",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Lautaro Martínez",
+        "minute": "31",
+        "team": "Argentina",
+        "ownGoal": false,
+        "penalty": true
+      },
+      {
+        "name": "Lionel Messi",
+        "minute": "80",
+        "team": "Argentina",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "61",
@@ -2633,10 +2707,10 @@
     "stadium": "Miami Stadium",
     "city": "Miami Gardens",
     "hostCountry": "USA",
-    "status": "SCHEDULED",
+    "status": "FT",
     "score": {
-      "home": null,
-      "away": null
+      "home": 0,
+      "away": 0
     },
     "goalsHome": [],
     "goalsAway": []
@@ -2652,13 +2726,43 @@
     "stadium": "Atlanta Stadium",
     "city": "Atlanta",
     "hostCountry": "USA",
-    "status": "SCHEDULED",
+    "status": "FT",
     "score": {
-      "home": null,
-      "away": null
+      "home": 3,
+      "away": 1
     },
-    "goalsHome": [],
-    "goalsAway": []
+    "goalsHome": [
+      {
+        "name": "Yoane Wissa",
+        "minute": "68",
+        "team": "DR Congo",
+        "ownGoal": false,
+        "penalty": true
+      },
+      {
+        "name": "Fiston Mayele",
+        "minute": "78",
+        "team": "DR Congo",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Yoane Wissa",
+        "minute": "90+1",
+        "team": "DR Congo",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Eldor Shomurodov",
+        "minute": "10",
+        "team": "Uzbekistan",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "67",
@@ -2807,13 +2911,28 @@
     "stadium": "New York New Jersey Stadium",
     "city": "East Rutherford",
     "hostCountry": "USA",
-    "status": "SCHEDULED",
+    "status": "FT",
     "score": {
-      "home": null,
-      "away": null
+      "home": 0,
+      "away": 2
     },
     "goalsHome": [],
-    "goalsAway": []
+    "goalsAway": [
+      {
+        "name": "Jude Bellingham",
+        "minute": "62",
+        "team": "England",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Harry Kane",
+        "minute": "67",
+        "team": "England",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "72",
@@ -2826,13 +2945,36 @@
     "stadium": "Philadelphia Stadium",
     "city": "Philadelphia",
     "hostCountry": "USA",
-    "status": "SCHEDULED",
+    "status": "FT",
     "score": {
-      "home": null,
-      "away": null
+      "home": 2,
+      "away": 1
     },
-    "goalsHome": [],
-    "goalsAway": []
+    "goalsHome": [
+      {
+        "name": "Petar Sucic",
+        "minute": "31",
+        "team": "Croatia",
+        "ownGoal": false,
+        "penalty": false
+      },
+      {
+        "name": "Nikola Vlasic",
+        "minute": "83",
+        "team": "Croatia",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ],
+    "goalsAway": [
+      {
+        "name": "Derrick Luckassen",
+        "minute": "73",
+        "team": "Ghana",
+        "ownGoal": false,
+        "penalty": false
+      }
+    ]
   },
   {
     "id": "73",

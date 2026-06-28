@@ -4,6 +4,9 @@ const tabMatches =
 const groupsContainer =
   document.getElementById("groupsContainer");
 
+const eliminatorContainer =
+  document.getElementById("eliminatorContainer");
+
 const tabEmptyState =
   document.getElementById("tabEmptyState");
 
@@ -218,8 +221,14 @@ function createGoalScorersBlock(match) {
 
   return `
     <div class="goal-scorers">
-      <div class="goal-scorers-col">${homeList}</div>
-      <div class="goal-scorers-col goal-scorers-col-right">${awayList}</div>
+      <div class="goal-scorers-col">
+        <div class="goal-scorers-team">${match.team1}</div>
+        ${homeList || "<span class=\"goal-scorers-none\">—</span>"}
+      </div>
+      <div class="goal-scorers-col goal-scorers-col-right">
+        <div class="goal-scorers-team">${match.team2}</div>
+        ${awayList || "<span class=\"goal-scorers-none\">—</span>"}
+      </div>
     </div>
   `;
 }
@@ -445,6 +454,137 @@ function createGroupBlock(groupLetter, groupMatches) {
   `;
 }
 
+/* =========================================
+   ELIMINATOR TAB (Knockout Bracket)
+
+   Knockout fixtures reference unresolved slots two ways:
+   - "W74" = winner of match id 74 (chains back through earlier rounds)
+   - "1A" / "2A" = Group A winner / runner-up
+   - "3A/B/C/D/F" = best third-placed team among the listed groups
+
+   We resolve "W##" references by looking up that match: if it's
+   finished, show the actual winner; otherwise show a readable
+   "Winner of Team1 vs Team2" placeholder. Group-letter codes are
+   shown as-is (e.g. "Group A Winner") since standings already surface
+   that fact accurately in the Groups tab.
+========================================= */
+
+const ROUND_ORDER = [
+  "Round of 32", "Round of 16", "Quarter-final",
+  "Semi-final", "Match for third place", "Final",
+];
+
+function isPlaceholderCode(name) {
+  return /^(W\d+|\d[A-L](\/[A-L])*|\d[A-L]\/[A-L\/]+)$/.test(name || "");
+}
+
+function resolveTeamLabel(code, matchesById) {
+  if (!code) return "TBD";
+
+  const winnerMatch = code.match(/^W(\d+)$/);
+  if (winnerMatch) {
+    const ref = matchesById.get(winnerMatch[1]);
+    if (!ref) return `Winner of Match ${winnerMatch[1]}`;
+
+    if (ref.status === "FT" && ref.score.home !== null) {
+      const winnerName = ref.score.home > ref.score.away ? ref.team1 : ref.team2;
+      // Tie in a knockout match shouldn't happen (extra time/penalties
+      // resolve it), but guard anyway rather than guess.
+      if (ref.score.home === ref.score.away) return `Winner of ${ref.team1} vs ${ref.team2}`;
+      return winnerName;
+    }
+
+    const t1 = isPlaceholderCode(ref.team1) ? resolveTeamLabel(ref.team1, matchesById) : ref.team1;
+    const t2 = isPlaceholderCode(ref.team2) ? resolveTeamLabel(ref.team2, matchesById) : ref.team2;
+    return `Winner: ${t1} vs ${t2}`;
+  }
+
+  const groupSlot = code.match(/^(\d)([A-L])$/);
+  if (groupSlot) {
+    const [, place, letter] = groupSlot;
+    const ordinal = place === "1" ? "Winner" : "Runner-up";
+    return `Group ${letter} ${ordinal}`;
+  }
+
+  const thirdPlace = code.match(/^3([A-L](?:\/[A-L])*)$/);
+  if (thirdPlace) {
+    return `Best 3rd: Group ${thirdPlace[1].split("/").join("/")}`;
+  }
+
+  return code; // already a real team name
+}
+
+function createEliminatorMatchCard(match, matchesById) {
+  const team1Label = isPlaceholderCode(match.team1)
+    ? resolveTeamLabel(match.team1, matchesById)
+    : match.team1;
+  const team2Label = isPlaceholderCode(match.team2)
+    ? resolveTeamLabel(match.team2, matchesById)
+    : match.team2;
+
+  const team1IsReal = !isPlaceholderCode(match.team1);
+  const team2IsReal = !isPlaceholderCode(match.team2);
+
+  const hasScore =
+    match.score && match.score.home !== null && match.score.away !== null && match.status !== "SCHEDULED";
+
+  const score = hasScore
+    ? `<span class="elim-score">${match.score.home} - ${match.score.away}</span>`
+    : `<span class="elim-score elim-vs">vs</span>`;
+
+  return `
+    <div class="elim-match">
+      <div class="elim-match-meta">${formatMatchTime(match.timeUTC)} • ${match.city}</div>
+      <div class="elim-teams">
+        <div class="elim-team ${team1IsReal ? "" : "elim-team-tbd"}">
+          ${team1IsReal ? getFlag(match.team1) : ""}
+          <span>${team1Label}</span>
+        </div>
+        ${score}
+        <div class="elim-team elim-team-right ${team2IsReal ? "" : "elim-team-tbd"}">
+          <span>${team2Label}</span>
+          ${team2IsReal ? getFlag(match.team2) : ""}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderEliminator(matches) {
+  const knockoutMatches = matches.filter(m => ROUND_ORDER.includes(m.stage));
+
+  if (knockoutMatches.length === 0) {
+    eliminatorContainer.innerHTML = `<div class="text-center text-zinc-500 py-12">Knockout stage hasn't started yet.</div>`;
+    return;
+  }
+
+  const matchesById = new Map(matches.map(m => [String(m.id), m]));
+
+  const byRound = {};
+  for (const m of knockoutMatches) {
+    if (!byRound[m.stage]) byRound[m.stage] = [];
+    byRound[m.stage].push(m);
+  }
+
+  const sections = ROUND_ORDER
+    .filter(round => byRound[round] && byRound[round].length > 0)
+    .map(round => {
+      const roundMatches = [...byRound[round]].sort(
+        (a, b) => new Date(a.timeUTC) - new Date(b.timeUTC)
+      );
+      return `
+        <div class="elim-round">
+          <div class="elim-round-title">${round}</div>
+          <div class="elim-round-grid">
+            ${roundMatches.map(m => createEliminatorMatchCard(m, matchesById)).join("")}
+          </div>
+        </div>
+      `;
+    });
+
+  eliminatorContainer.innerHTML = sections.join("");
+}
+
 function renderGroups(matches) {
   const groupStageMatches = matches.filter(m => m.stage === "Group Stage" && m.group);
 
@@ -482,14 +622,25 @@ function render(matches) {
 function renderActiveTab(matches) {
   if (activeTab === "groups") {
     tabMatches.classList.add("hidden");
+    eliminatorContainer.classList.add("hidden");
     tabEmptyState.classList.add("hidden");
     groupsContainer.classList.remove("hidden");
     renderGroups(matches);
     return;
   }
 
+  if (activeTab === "eliminator") {
+    tabMatches.classList.add("hidden");
+    groupsContainer.classList.add("hidden");
+    tabEmptyState.classList.add("hidden");
+    eliminatorContainer.classList.remove("hidden");
+    renderEliminator(matches);
+    return;
+  }
+
   tabMatches.classList.remove("hidden");
   groupsContainer.classList.add("hidden");
+  eliminatorContainer.classList.add("hidden");
 
   const buckets = getTabBuckets(matches, selectedTimezone);
   let tabMatchList = buckets[activeTab] || [];
@@ -549,7 +700,13 @@ async function fetchMatches() {
     // Only overwrite our known-good data if the server actually
     // returned something — an empty/failed cycle shouldn't blank the UI.
     if (Array.isArray(data.data) && data.data.length > 0) {
-      lastKnownGoodMatches = data.data;
+      // Sort chronologically here, once, at the source — every tab
+      // (Today, Tomorrow, Previous, All Matches, Groups) then inherits
+      // correct first-to-last ordering automatically without needing
+      // its own sort logic.
+      lastKnownGoodMatches = [...data.data].sort(
+        (a, b) => new Date(a.timeUTC) - new Date(b.timeUTC)
+      );
     }
 
     return lastKnownGoodMatches;
