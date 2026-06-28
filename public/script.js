@@ -82,6 +82,68 @@ const flags = {
 };
 
 /* =========================================
+   FIFA COUNTRY CODES (Eliminator tab only)
+   Used to keep the full bracket tree visible without
+   needing to shrink the page — flags already identify
+   the team, so a 3-letter code is enough alongside them.
+========================================= */
+
+const countryCodes = {
+  "Algeria": "ALG",
+  "Argentina": "ARG",
+  "Australia": "AUS",
+  "Austria": "AUT",
+  "Belgium": "BEL",
+  "Bosnia & Herzegovina": "BIH",
+  "Brazil": "BRA",
+  "Canada": "CAN",
+  "Cape Verde": "CPV",
+  "Colombia": "COL",
+  "Croatia": "CRO",
+  "Curaçao": "CUW",
+  "Czech Republic": "CZE",
+  "DR Congo": "COD",
+  "Ecuador": "ECU",
+  "Egypt": "EGY",
+  "England": "ENG",
+  "France": "FRA",
+  "Germany": "GER",
+  "Ghana": "GHA",
+  "Haiti": "HAI",
+  "Iran": "IRN",
+  "Iraq": "IRQ",
+  "Ivory Coast": "CIV",
+  "Japan": "JPN",
+  "Jordan": "JOR",
+  "Mexico": "MEX",
+  "Morocco": "MAR",
+  "Netherlands": "NED",
+  "New Zealand": "NZL",
+  "Norway": "NOR",
+  "Panama": "PAN",
+  "Paraguay": "PAR",
+  "Portugal": "POR",
+  "Qatar": "QAT",
+  "Saudi Arabia": "KSA",
+  "Scotland": "SCO",
+  "Senegal": "SEN",
+  "South Africa": "RSA",
+  "South Korea": "KOR",
+  "Spain": "ESP",
+  "Sweden": "SWE",
+  "Switzerland": "SUI",
+  "Tunisia": "TUN",
+  "Turkey": "TUR",
+  "USA": "USA",
+  "Uruguay": "URU",
+  "Uzbekistan": "UZB",
+};
+
+function getCountryCode(name) {
+  return countryCodes[name] || name; // fall back to full name if unmapped
+}
+
+/* =========================================
    HELPERS
 ========================================= */
 
@@ -518,12 +580,12 @@ function resolveTeamLabel(code, matchesById) {
     if (!ref) return `Winner of Match ${winnerMatch[1]}`;
 
     if (ref.status === "FT" && ref.score.home !== null) {
-      if (ref.score.home === ref.score.away) return `Winner of ${ref.team1} vs ${ref.team2}`;
-      return ref.score.home > ref.score.away ? ref.team1 : ref.team2;
+      if (ref.score.home === ref.score.away) return `Winner of ${getCountryCode(ref.team1)} vs ${getCountryCode(ref.team2)}`;
+      return getCountryCode(ref.score.home > ref.score.away ? ref.team1 : ref.team2);
     }
 
-    const t1 = isPlaceholderCode(ref.team1) ? resolveTeamLabel(ref.team1, matchesById) : ref.team1;
-    const t2 = isPlaceholderCode(ref.team2) ? resolveTeamLabel(ref.team2, matchesById) : ref.team2;
+    const t1 = isPlaceholderCode(ref.team1) ? resolveTeamLabel(ref.team1, matchesById) : getCountryCode(ref.team1);
+    const t2 = isPlaceholderCode(ref.team2) ? resolveTeamLabel(ref.team2, matchesById) : getCountryCode(ref.team2);
     return `${t1} / ${t2}`;
   }
 
@@ -532,9 +594,9 @@ function resolveTeamLabel(code, matchesById) {
     const ref = matchesById.get(loserMatch[1]);
     if (!ref) return `Loser of Match ${loserMatch[1]}`;
     if (ref.status === "FT" && ref.score.home !== null && ref.score.home !== ref.score.away) {
-      return ref.score.home > ref.score.away ? ref.team2 : ref.team1;
+      return getCountryCode(ref.score.home > ref.score.away ? ref.team2 : ref.team1);
     }
-    return `Loser: ${ref.team1} vs ${ref.team2}`;
+    return `Loser: ${getCountryCode(ref.team1)} vs ${getCountryCode(ref.team2)}`;
   }
 
   const groupSlot = code.match(/^(\d)([A-L])$/);
@@ -582,7 +644,7 @@ function buildBracketNode(match, matchesById) {
 
 function createBracketSlot(teamCode, match, matchesById) {
   const isReal = !isPlaceholderCode(teamCode);
-  const label = isReal ? teamCode : resolveTeamLabel(teamCode, matchesById);
+  const label = isReal ? getCountryCode(teamCode) : resolveTeamLabel(teamCode, matchesById);
 
   // Determine if THIS slot is the winner, to highlight progression —
   // only meaningful once the match has a real result.
@@ -603,7 +665,7 @@ function createBracketSlot(teamCode, match, matchesById) {
 function createBracketMatchBox(match, matchesById) {
   return `
     <div class="bracket-box">
-      <div class="bracket-box-meta">${formatMatchTime(match.timeUTC)} • ${match.city}</div>
+      <div class="bracket-box-meta">${formatMatchTime(match.timeUTC)}</div>
       ${createBracketSlot(match.team1, match, matchesById)}
       ${createBracketSlot(match.team2, match, matchesById)}
     </div>

@@ -790,7 +790,7 @@ body {
 
 .bracket-half {
   display: flex;
-  gap: 28px;
+  gap: 20px;
 }
 
 .bracket-half-right {
@@ -801,9 +801,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 24px;
+  gap: 20px;
   position: relative;
-  min-width: 200px;
+  min-width: 128px;
 }
 
 .bracket-col-label {
@@ -817,9 +817,9 @@ body {
 }
 
 .bracket-col-final {
-  min-width: 200px;
-  gap: 32px;
-  padding: 0 16px;
+  min-width: 128px;
+  gap: 28px;
+  padding: 0 12px;
 }
 
 .bracket-final-label {
@@ -846,8 +846,8 @@ body {
   content: "";
   position: absolute;
   top: 50%;
-  right: -28px;
-  width: 28px;
+  right: -20px;
+  width: 20px;
   height: 1px;
   background: rgba(255,255,255,0.15);
 }
@@ -856,8 +856,8 @@ body {
   content: "";
   position: absolute;
   top: 50%;
-  left: -28px;
-  width: 28px;
+  left: -20px;
+  width: 20px;
   height: 1px;
   background: rgba(255,255,255,0.15);
 }
@@ -926,32 +926,44 @@ body {
 
 @media (max-width: 768px) {
   .bracket-col {
-    min-width: 168px;
+    min-width: 110px;
+    gap: 16px;
   }
 
   .bracket-col-final {
-    min-width: 168px;
+    min-width: 110px;
     padding: 0 8px;
+    gap: 22px;
   }
 
   .bracket-half {
-    gap: 20px;
+    gap: 16px;
   }
 
   .bracket-half-left .bracket-col:not(.bracket-col-final) .bracket-box::after,
   .bracket-half-right .bracket-col:not(.bracket-col-final) .bracket-box::after {
-    width: 20px;
+    width: 16px;
   }
 
   .bracket-half-left .bracket-col:not(.bracket-col-final) .bracket-box::after {
-    right: -20px;
+    right: -16px;
   }
 
   .bracket-half-right .bracket-col:not(.bracket-col-final) .bracket-box::after {
-    left: -20px;
+    left: -16px;
+  }
+
+  .bracket-box {
+    padding: 8px 10px;
   }
 
   .bracket-slot {
     font-size: 12px;
+    gap: 6px;
+  }
+
+  .bracket-slot img {
+    width: 16px;
+    height: 12px;
   }
 }
