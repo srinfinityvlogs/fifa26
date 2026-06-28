@@ -631,13 +631,10 @@ body {
 
 @media (max-width: 768px) {
   .goal-scorers {
-    font-size: 12px;
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .goal-scorers::after {
-    display: none; /* vertical divider doesn't apply when stacked */
+    font-size: 11px;
+    line-height: 1.5;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
 
   .goal-scorers-col,
@@ -646,9 +643,17 @@ body {
     padding: 0;
   }
 
+  .goal-scorers-col {
+    padding-right: 8px;
+  }
+
   .goal-scorers-col-right {
-    padding-top: 10px;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-left: 8px;
+    border-top: none;
+  }
+
+  .goal-scorers-team {
+    font-size: 10px;
   }
 }
 
@@ -762,12 +767,191 @@ body {
   .elim-round-grid {
     grid-template-columns: 1fr;
   }
+}
 
-  .elim-team {
-    font-size: 13px;
+/* =========================================
+   REAL BRACKET (Eliminator tab)
+========================================= */
+
+.bracket-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 12px;
+}
+
+.bracket-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  min-width: max-content;
+  padding: 12px 4px;
+}
+
+.bracket-half {
+  display: flex;
+  gap: 28px;
+}
+
+.bracket-half-right {
+  flex-direction: row-reverse;
+}
+
+.bracket-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  position: relative;
+  min-width: 200px;
+}
+
+.bracket-col-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.bracket-col-final {
+  min-width: 200px;
+  gap: 32px;
+  padding: 0 16px;
+}
+
+.bracket-final-label {
+  color: #00e5ff;
+  font-size: 13px;
+}
+
+.bracket-third-label {
+  color: rgba(255,255,255,0.4);
+  margin-top: 8px;
+}
+
+.bracket-box {
+  background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 10px 12px;
+  position: relative;
+}
+
+/* connector line stub extending toward the next column. Direction
+   flips depending on which half of the bracket this column belongs to. */
+.bracket-half-left .bracket-col:not(.bracket-col-final) .bracket-box::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -28px;
+  width: 28px;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+}
+
+.bracket-half-right .bracket-col:not(.bracket-col-final) .bracket-box::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -28px;
+  width: 28px;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+}
+
+.bracket-box-meta {
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bracket-slot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.bracket-slot img {
+  width: 20px;
+  height: 15px;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.12);
+  flex-shrink: 0;
+}
+
+.bracket-slot-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bracket-slot-tbd {
+  color: rgba(255,255,255,0.4);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.bracket-slot-tbd .bracket-slot-name {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  font-size: 12px;
+}
+
+.bracket-slot-dash {
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+  color: rgba(255,255,255,0.3);
+}
+
+.bracket-slot-winner {
+  color: #00e5ff;
+}
+
+.bracket-slot-winner .bracket-slot-name::after {
+  content: " ✓";
+  font-size: 11px;
+}
+
+@media (max-width: 768px) {
+  .bracket-col {
+    min-width: 168px;
   }
 
-  .elim-team-tbd span {
+  .bracket-col-final {
+    min-width: 168px;
+    padding: 0 8px;
+  }
+
+  .bracket-half {
+    gap: 20px;
+  }
+
+  .bracket-half-left .bracket-col:not(.bracket-col-final) .bracket-box::after,
+  .bracket-half-right .bracket-col:not(.bracket-col-final) .bracket-box::after {
+    width: 20px;
+  }
+
+  .bracket-half-left .bracket-col:not(.bracket-col-final) .bracket-box::after {
+    right: -20px;
+  }
+
+  .bracket-half-right .bracket-col:not(.bracket-col-final) .bracket-box::after {
+    left: -20px;
+  }
+
+  .bracket-slot {
     font-size: 12px;
   }
 }

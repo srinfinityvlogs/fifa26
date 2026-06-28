@@ -475,7 +475,38 @@ const ROUND_ORDER = [
 ];
 
 function isPlaceholderCode(name) {
-  return /^(W\d+|\d[A-L](\/[A-L])*|\d[A-L]\/[A-L\/]+)$/.test(name || "");
+  return /^([WL]\d+|\d[A-L](\/[A-L])*|\d[A-L]\/[A-L\/]+)$/.test(name || "");
+}
+
+// Returns the REAL resolved team name if known, or null if still undecided.
+// Used to determine actual bracket progression (for highlighting/connecting),
+// as opposed to resolveTeamLabel which always returns a human-readable string
+// (placeholder text included) for display.
+function resolveActualTeam(code, matchesById, wantWinner = true) {
+  if (!code) return null;
+  if (!isPlaceholderCode(code)) return code; // already a real team name
+
+  const ref_match = code.match(/^([WL])(\d+)$/);
+  if (ref_match) {
+    const [, kind, id] = ref_match;
+    const ref = matchesById.get(id);
+    if (!ref || ref.status !== "FT" || ref.score.home === null) return null;
+    if (ref.score.home === ref.score.away) return null; // shouldn't happen in knockout
+
+    const winner = ref.score.home > ref.score.away ? ref.team1 : ref.team2;
+    const loser = ref.score.home > ref.score.away ? ref.team2 : ref.team1;
+    const resultTeam = (kind === "W") === wantWinner ? winner : loser;
+
+    // The team stored on the match might ITSELF be unresolved (e.g. a R16
+    // match between two still-placeholder R32 winners) — recurse via the
+    // same resolution path used for display, but here we want the truth,
+    // so if resultTeam is still a code, resolve it too.
+    return isPlaceholderCode(resultTeam)
+      ? resolveActualTeam(resultTeam, matchesById, true)
+      : resultTeam;
+  }
+
+  return null; // group-slot codes (1A, 3A/B/C) aren't resolved to a real team here
 }
 
 function resolveTeamLabel(code, matchesById) {
@@ -487,16 +518,23 @@ function resolveTeamLabel(code, matchesById) {
     if (!ref) return `Winner of Match ${winnerMatch[1]}`;
 
     if (ref.status === "FT" && ref.score.home !== null) {
-      const winnerName = ref.score.home > ref.score.away ? ref.team1 : ref.team2;
-      // Tie in a knockout match shouldn't happen (extra time/penalties
-      // resolve it), but guard anyway rather than guess.
       if (ref.score.home === ref.score.away) return `Winner of ${ref.team1} vs ${ref.team2}`;
-      return winnerName;
+      return ref.score.home > ref.score.away ? ref.team1 : ref.team2;
     }
 
     const t1 = isPlaceholderCode(ref.team1) ? resolveTeamLabel(ref.team1, matchesById) : ref.team1;
     const t2 = isPlaceholderCode(ref.team2) ? resolveTeamLabel(ref.team2, matchesById) : ref.team2;
-    return `Winner: ${t1} vs ${t2}`;
+    return `${t1} / ${t2}`;
+  }
+
+  const loserMatch = code.match(/^L(\d+)$/);
+  if (loserMatch) {
+    const ref = matchesById.get(loserMatch[1]);
+    if (!ref) return `Loser of Match ${loserMatch[1]}`;
+    if (ref.status === "FT" && ref.score.home !== null && ref.score.home !== ref.score.away) {
+      return ref.score.home > ref.score.away ? ref.team2 : ref.team1;
+    }
+    return `Loser: ${ref.team1} vs ${ref.team2}`;
   }
 
   const groupSlot = code.match(/^(\d)([A-L])$/);
@@ -508,44 +546,66 @@ function resolveTeamLabel(code, matchesById) {
 
   const thirdPlace = code.match(/^3([A-L](?:\/[A-L])*)$/);
   if (thirdPlace) {
-    return `Best 3rd: Group ${thirdPlace[1].split("/").join("/")}`;
+    return `Best 3rd: Grp ${thirdPlace[1].split("/").join("/")}`;
   }
 
   return code; // already a real team name
 }
 
-function createEliminatorMatchCard(match, matchesById) {
-  const team1Label = isPlaceholderCode(match.team1)
-    ? resolveTeamLabel(match.team1, matchesById)
-    : match.team1;
-  const team2Label = isPlaceholderCode(match.team2)
-    ? resolveTeamLabel(match.team2, matchesById)
-    : match.team2;
+/* =========================================
+   BRACKET TREE CONSTRUCTION
 
-  const team1IsReal = !isPlaceholderCode(match.team1);
-  const team2IsReal = !isPlaceholderCode(match.team2);
+   Builds a binary tree purely from match ID references (W##/L##), so
+   it works for any tournament shape without hardcoding round names or
+   match counts. Each node = { match, team1Source, team2Source, left, right }
+   where left/right are the matches feeding into this one (or null for
+   the very first round, which has real or group-slot starting values).
+========================================= */
 
-  const hasScore =
-    match.score && match.score.home !== null && match.score.away !== null && match.status !== "SCHEDULED";
+function findSourceMatch(code, matchesById) {
+  const m = (code || "").match(/^[WL](\d+)$/);
+  return m ? matchesById.get(m[1]) : null;
+}
 
-  const score = hasScore
-    ? `<span class="elim-score">${match.score.home} - ${match.score.away}</span>`
-    : `<span class="elim-score elim-vs">vs</span>`;
+function buildBracketNode(match, matchesById) {
+  if (!match) return null;
+  return {
+    match,
+    left: findSourceMatch(match.team1, matchesById)
+      ? buildBracketNode(findSourceMatch(match.team1, matchesById), matchesById)
+      : null,
+    right: findSourceMatch(match.team2, matchesById)
+      ? buildBracketNode(findSourceMatch(match.team2, matchesById), matchesById)
+      : null,
+  };
+}
+
+function createBracketSlot(teamCode, match, matchesById) {
+  const isReal = !isPlaceholderCode(teamCode);
+  const label = isReal ? teamCode : resolveTeamLabel(teamCode, matchesById);
+
+  // Determine if THIS slot is the winner, to highlight progression —
+  // only meaningful once the match has a real result.
+  let isWinner = false;
+  if (match.status === "FT" && match.score.home !== null && match.score.home !== match.score.away) {
+    const winningTeamName = match.score.home > match.score.away ? match.team1 : match.team2;
+    isWinner = isReal && teamCode === winningTeamName;
+  }
 
   return `
-    <div class="elim-match">
-      <div class="elim-match-meta">${formatMatchTime(match.timeUTC)} • ${match.city}</div>
-      <div class="elim-teams">
-        <div class="elim-team ${team1IsReal ? "" : "elim-team-tbd"}">
-          ${team1IsReal ? getFlag(match.team1) : ""}
-          <span>${team1Label}</span>
-        </div>
-        ${score}
-        <div class="elim-team elim-team-right ${team2IsReal ? "" : "elim-team-tbd"}">
-          <span>${team2Label}</span>
-          ${team2IsReal ? getFlag(match.team2) : ""}
-        </div>
-      </div>
+    <div class="bracket-slot ${isReal ? "" : "bracket-slot-tbd"} ${isWinner ? "bracket-slot-winner" : ""}">
+      ${isReal ? getFlag(teamCode) : '<span class="bracket-slot-dash">•</span>'}
+      <span class="bracket-slot-name">${label}</span>
+    </div>
+  `;
+}
+
+function createBracketMatchBox(match, matchesById) {
+  return `
+    <div class="bracket-box">
+      <div class="bracket-box-meta">${formatMatchTime(match.timeUTC)} • ${match.city}</div>
+      ${createBracketSlot(match.team1, match, matchesById)}
+      ${createBracketSlot(match.team2, match, matchesById)}
     </div>
   `;
 }
@@ -560,6 +620,82 @@ function renderEliminator(matches) {
 
   const matchesById = new Map(matches.map(m => [String(m.id), m]));
 
+  const finalMatch = knockoutMatches.find(m => m.stage === "Final");
+  const thirdPlaceMatch = knockoutMatches.find(m => m.stage === "Match for third place");
+
+  if (!finalMatch) {
+    // Fallback: knockout data exists but no Final entry found (shouldn't
+    // happen with a real tournament dataset) — show a flat list instead
+    // of a broken bracket.
+    eliminatorContainer.innerHTML = renderFlatKnockoutFallback(knockoutMatches, matchesById);
+    return;
+  }
+
+  const tree = buildBracketNode(finalMatch, matchesById);
+
+  // Collect every match at each depth from the Final backward, so we can
+  // render proper columns (Final is the rightmost-center column; R32 is
+  // the outermost columns on both sides).
+  const leftHalf = tree.left;   // SF1 branch -> everything feeding it
+  const rightHalf = tree.right; // SF2 branch -> everything feeding it
+
+  function collectByDepth(node, depth, acc) {
+    if (!node) return;
+    if (!acc[depth]) acc[depth] = [];
+    acc[depth].push(node);
+    collectByDepth(node.left, depth + 1, acc);
+    collectByDepth(node.right, depth + 1, acc);
+  }
+
+  const leftDepths = {};
+  collectByDepth(leftHalf, 0, leftDepths);
+  const rightDepths = {};
+  collectByDepth(rightHalf, 0, rightDepths);
+
+  const maxDepth = Math.max(
+    ...Object.keys(leftDepths).map(Number),
+    ...Object.keys(rightDepths).map(Number)
+  );
+
+  const STAGE_NAMES = { 0: "Semi-final", 1: "Quarter-final", 2: "Round of 16", 3: "Round of 32" };
+
+  function renderHalf(depths, side) {
+    const cols = [];
+    for (let d = maxDepth; d >= 0; d--) {
+      const nodes = (depths[d] || []).slice();
+      cols.push(`
+        <div class="bracket-col">
+          <div class="bracket-col-label">${STAGE_NAMES[d] || "Round"}</div>
+          ${nodes.map(n => createBracketMatchBox(n.match, matchesById)).join("")}
+        </div>
+      `);
+    }
+    return `<div class="bracket-half bracket-half-${side}">${cols.join("")}</div>`;
+  }
+
+  const finalCol = `
+    <div class="bracket-col bracket-col-final">
+      <div class="bracket-col-label bracket-final-label">Final</div>
+      ${createBracketMatchBox(finalMatch, matchesById)}
+      ${thirdPlaceMatch ? `
+        <div class="bracket-col-label bracket-third-label">3rd Place</div>
+        ${createBracketMatchBox(thirdPlaceMatch, matchesById)}
+      ` : ""}
+    </div>
+  `;
+
+  eliminatorContainer.innerHTML = `
+    <div class="bracket-scroll">
+      <div class="bracket-wrap">
+        ${renderHalf(leftDepths, "left")}
+        ${finalCol}
+        ${renderHalf(rightDepths, "right")}
+      </div>
+    </div>
+  `;
+}
+
+function renderFlatKnockoutFallback(knockoutMatches, matchesById) {
   const byRound = {};
   for (const m of knockoutMatches) {
     if (!byRound[m.stage]) byRound[m.stage] = [];
@@ -576,13 +712,13 @@ function renderEliminator(matches) {
         <div class="elim-round">
           <div class="elim-round-title">${round}</div>
           <div class="elim-round-grid">
-            ${roundMatches.map(m => createEliminatorMatchCard(m, matchesById)).join("")}
+            ${roundMatches.map(m => createBracketMatchBox(m, matchesById)).join("")}
           </div>
         </div>
       `;
     });
 
-  eliminatorContainer.innerHTML = sections.join("");
+  return sections.join("");
 }
 
 function renderGroups(matches) {
